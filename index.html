@@ -11,13 +11,14 @@
       background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 100%);
       color: #e0f7fa;
       overflow-x: hidden;
-    }body::before {
+    }/* ✨ Starfield Animation */
+body::before {
   content: '';
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-  opacity: 0.15;
+  opacity: 0.1;
   z-index: -1;
   animation: starfield 100s linear infinite;
 }
@@ -116,8 +117,7 @@ footer {
 
   </style>
 </head>
-<body>
-  <header>
+<body>  <header>
     <h1>Dr. Asura</h1>
     <p>Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
   </header>  <nav>
