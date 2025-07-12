@@ -1,188 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dr. Asura | Research Gateway</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Asura | Independent Researcher</title>
   <style>
     body {
+      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 100%);
-      color: #e0f7fa;
-      overflow-x: hidden;
-    }
+      padding: 0;
+      background: url('https://raw.githubusercontent.com/drasura666/drasura666.github.io/main/stars_bg.gif') no-repeat center center fixed;
+      background-size: cover;
+      color: #f0f0f0;
+      line-height: 1.6;
+    }header {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem 1rem;
+  text-align: center;
+  border-bottom: 2px solid #00ffc3;
+}
 
-    /* STARFIELD BACKGROUND */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-      opacity: 0.15;
-      z-index: -1;
-      animation: starfield 100s linear infinite;
-    }
+h1 {
+  margin: 0;
+  font-size: 3rem;
+  color: #00ffc3;
+  text-shadow: 0 0 10px #00ffc3;
+}
 
-    @keyframes starfield {
-      0% {background-position: 0 0;}
-      100% {background-position: 10000px 10000px;}
-    }
+p.subtitle {
+  font-size: 1.1rem;
+  color: #bbb;
+  margin-top: 0.5rem;
+}
 
-    header {
-      padding: 2rem;
-      text-align: center;
-      background: rgba(0, 0, 50, 0.8);
-      box-shadow: 0 0 20px #00ffc3;
-    }
+nav {
+  margin-top: 1rem;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-      color: #00ffc3;
-    }
+nav a {
+  color: #00ffc3;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: bold;
+}
 
-    nav {
-      text-align: center;
-      background: #111;
-      padding: 1rem;
-    }
+nav a:hover {
+  text-decoration: underline;
+}
 
-    nav a {
-      margin: 0 1rem;
-      color: #00fff7;
-      text-decoration: none;
-      font-weight: bold;
-    }
+main {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
 
-    nav a:hover {
-      color: #ffffff;
-    }
+section {
+  margin-bottom: 3rem;
+}
 
-    main {
-      padding: 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
+h2 {
+  border-left: 5px solid #00ffc3;
+  padding-left: 10px;
+  color: #00ffc3;
+  margin-bottom: 1rem;
+}
 
-    section {
-      margin-bottom: 3rem;
-      background: rgba(0,0,0,0.6);
-      padding: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 12px #0078a3;
-    }
+ul {
+  padding-left: 1.5rem;
+}
 
-    h2 {
-      color: #00ffc3;
-      font-size: 1.6rem;
-    }
+a {
+  color: #00ffc3;
+}
 
-    .project {
-      margin: 1rem 0;
-      padding: 1rem;
-      border: 1px solid #00e5ff;
-      border-radius: 1rem;
-      background: #00151f;
-      box-shadow: 0 0 8px #00eaff66;
-    }
+a:hover {
+  text-decoration: underline;
+}
 
-    .project a {
-      color: #00eaff;
-      text-decoration: none;
-      font-weight: bold;
-    }
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: #888;
+  border-top: 1px solid #222;
+  margin-top: 2rem;
+}
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #111;
-      color: #888;
-    }
-
-    .button {
-      background: #00ffc3;
-      color: #000;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 10px;
-      margin-top: 0.5rem;
-      display: inline-block;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .button:hover {
-      background: #00c8a7;
-    }
+.pdf-links a {
+  display: block;
+  margin-bottom: 0.5rem;
+}
 
   </style>
 </head>
-<body>
-  <header>
+<body>  <header>
     <h1>Dr. Asura</h1>
-    <p>Visionary Research | Cosmology | Energy | Engineering</p>
-  </header>
+    <p class="subtitle">Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#vision">Vision</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>  <main><section id="about">
+  <h2>About Me</h2>
+  <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space-time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
+</section>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<section id="skills">
+  <h2>Technical & Soft Skills</h2>
+  <h3>Technical</h3>
+  <ul>
+    <li>RCC Design & Bar Bending Schedule</li>
+    <li>Surveying: Chain, Compass, Levelling</li>
+    <li>Concrete Tech: Mixing, Placing, Curing</li>
+    <li>Hydraulic Structures: Dams, Canals</li>
+    <li>Architectural Drawing: Plan, Section, Elevation</li>
+    <li>Environmental Consideration in Civil Design</li>
+    <li>On-site Communication & Coordination</li>
+  </ul>
+  <h3>Soft Skills</h3>
+  <ul>
+    <li>Professional Communication</li>
+    <li>Leadership & Team Collaboration</li>
+    <li>Time Management</li>
+    <li>Site Discipline & Responsibility</li>
+  </ul>
+</section>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I am an independent researcher focused on reshaping humanity’s future through experimental cosmology, advanced materials, and sustainable energy systems. My mission is to convert theory into reality — through proof, through innovation, and through power.
-      </p>
-    </section>
+<section id="projects">
+  <h2>Research Projects & Hypotheses</h2>
+  <ul>
+    <li><strong>The Colour of Emptiness Hypothesis:</strong> The blackness of space is an absorption mask; beyond it lies the true void.</li>
+    <li><strong>MDMG Theory:</strong> Plasma–magnetic interactions possibly amplifying dark energy.</li>
+    <li><strong>Black Holes as Dimensional Gateways:</strong> Gravitational pressure distorts time to zero, enabling dimensional transitions.</li>
+    <li><strong>Prāṇika Substance:</strong> Multistate, variable-mass substance for space tech and defense.</li>
+    <li><strong>A’s Binder:</strong> Eco-efficient road binder using plastic waste for sustainability.</li>
+    <li><strong>Frictional & Piezometric Energy Harvesting:</strong> Converting friction and pressure into usable energy.</li>
+    <li><strong>Pre-Big Bang Theoretical Energy Model:</strong> Suggests pre-universe energy states and forms.</li>
+    <li><strong>Space Fabric Tear Model:</strong> Predicts rupture of space-time if cosmic expansion continues indefinitely.</li>
+    <li><strong>Stormcore Project:</strong> Harnessing thunderstrike plasma for an advanced energy reactor concept.</li>
+  </ul>
 
-    <section id="projects">
-      <h2>⚙️ Preview Research Projects</h2>
+  <div class="pdf-links">
+    <h3>📄 Download Research Papers (PDF)</h3>
+    <a href="A_s_Binder.pdf" target="_blank">🛣️ A's Binder: Composite Road Binder</a>
+    <a href="The_Colour_of_Emptiness.pdf" target="_blank">🌌 The Colour of Emptiness Hypothesis</a>
+    <a href="STORMCORE.pdf" target="_blank">⚡ STORMCORE: Hybrid Lightning Energy Reactor</a>
+    <a href="MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">🧲 MDMG Theory: Magnetic Dark Matter Generation</a>
+    <a href="Hidden_Nature_of_Light (1).pdf" target="_blank">🔦 Hidden Nature of Light Theory</a>
+  </div>
+</section>
 
-      <div class="project">
-        <h3>🌌 The Colour of Emptiness</h3>
-        <p>Explores the dimensional origin of darkness in space and the role of dark energy in photon absorption beyond visibility.</p>
-        <a class="button" href="The_Colour_of_Emptiness.pdf" target="_blank">View PDF</a>
-      </div>
+<section id="vision">
+  <h2>Vision Statement</h2>
+  <p>I aim to bridge civil engineering with theoretical physics to redefine how humanity builds its future — on Earth and beyond. From space colonization to manipulating fundamental forces, my mission is to develop theories and innovations that reshape science, technology, and understanding of reality itself.</p>
+</section>
 
-      <div class="project">
-        <h3>⚡ Stormcore Project</h3>
-        <p>A multi-energy reactor concept using charged cloud systems and hydraulic pressure to generate steam, electricity, and desalination.</p>
-        <a class="button" href="Stormcore.pdf" target="_blank">View PDF</a>
-      </div>
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
+  <p>Website: <a href="https://drasura666.github.io" target="_blank">https://drasura666.github.io</a></p>
+</section>
 
-      <div class="project">
-        <h3>🧲 MDMG Theory</h3>
-        <p>Hypothesis: Magnetic fields interacting with solar plasma may disturb quantum vacuum, potentially generating dark energy particles.</p>
-        <a class="button" href="MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">View PDF</a>
-      </div>
-
-      <div class="project">
-        <h3>🧪 A's Binder</h3>
-        <p>Composite road binder using plastic waste, silica, fly ash, and fibers — engineered for sustainability and extreme weather.</p>
-        <a class="button" href="A_s_Binder.pdf" target="_blank">View PDF</a>
-      </div>
-
-      <div class="project">
-        <h3>🔦 Hidden Nature of Light</h3>
-        <p>A radical proposal to reimagine light as a dimensional plasma-like field. Philosophical physics meets testable formulations.</p>
-        <a class="button" href="Hidden_Nature_of_Light.pdf" target="_blank">View PDF</a>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>📩 Contact</h2>
-      <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/drasura666" target="_blank">github.com/drasura666</a></p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Dr. Asura. All Rights Reserved.</p>
-  </footer>
-</body>
+  </main>  <footer>
+    <p>© 2025 Dr. Asura. All rights reserved.</p>
+  </footer></body>
 </html>
