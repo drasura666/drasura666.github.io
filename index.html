@@ -18,16 +18,15 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-image: radial-gradient(white 1px, transparent 1px);
-      background-size: 2px 2px;
-      opacity: 0.15;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      opacity: 0.35; /* increased from 0.15 */
       z-index: -1;
-      animation: starfield 240s linear infinite;
+      animation: starfield 100s linear infinite;
     }
 
     @keyframes starfield {
       0% { background-position: 0 0; }
-      100% { background-position: 4000px 4000px; }
+      100% { background-position: 10000px 10000px; }
     }
 
     header {
@@ -99,7 +98,6 @@
       padding: 1rem;
       background: #111;
       color: #888;
-      font-size: 0.9rem;
     }
 
     .button {
@@ -136,9 +134,7 @@
   <main>
     <section id="about">
       <h2>About Me</h2>
-      <p>
-        Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space-time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.
-      </p>
+      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space-time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
     </section>
 
     <section id="skills">
@@ -204,7 +200,7 @@
   </main>
 
   <footer>
-    <p>© 2025 Dr. Asura. All Rights Reserved. | Licensed under CC BY-NC 4.0</p>
+    <p>© 2025 Dr. Asura. All Rights Reserved.</p>
   </footer>
 </body>
 </html>
