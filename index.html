@@ -29,10 +29,9 @@
       100% { background-position: 10000px 10000px; }
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0); }
+    @keyframes rotatePlanet {
+      0% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
     }
 
     header {
@@ -43,26 +42,27 @@
       position: relative;
     }
 
-    /* Glowing "Dr. Asura" text */
     header h1 {
       margin: 0;
       font-size: 2.5rem;
       color: #00ffc3;
       text-shadow: 0 0 8px #00fff2, 0 0 15px #00fff2, 0 0 25px #00ffc3;
       display: inline-block;
+      position: relative;
     }
 
-    /* Moving Planet beside name */
     .planet {
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      background: radial-gradient(circle, #00ffe0, #007878);
-      position: relative;
-      display: inline-block;
-      margin-left: 15px;
-      animation: float 3s ease-in-out infinite;
-      box-shadow: 0 0 12px #00ffc3;
+      background: radial-gradient(circle, #00fff2, #006666);
+      position: absolute;
+      right: -35px;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 0 15px #00ffc3, 0 0 30px #00ffff;
+      animation: rotatePlanet 4s linear infinite;
+      transform-origin: -20px center;
     }
 
     nav {
@@ -128,8 +128,8 @@
       color: #00eaff;
       text-decoration: none;
       font-weight: bold;
-      background: none; /* No background color */
-      border: none;     /* No border */
+      background: none;
+      border: none;
       padding: 0.3rem;
       border-radius: 5px;
       transition: color 0.3s ease;
@@ -146,7 +146,6 @@
       color: #888;
     }
 
-    /* Previous button styling (removed glow) */
     .button {
       background: none;
       color: #00ffc3;
@@ -168,7 +167,7 @@
 </head>
 <body>
   <header>
-    <h1>Dr. Asura</h1><span class="planet"></span>
+    <h1>Dr. Asura<span class="planet"></span></h1>
     <p>Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
   </header>
 
@@ -181,9 +180,77 @@
   </nav>
 
   <main>
-    <!-- Your same content starts here (unchanged) -->
-    <!-- Sections: About, Skills, Projects, Vision, Contact, License -->
-    <!-- You already pasted this; just reuse it or let me reinsert if you want -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space-time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
+    </section>
+
+    <section id="skills">
+      <h2>Technical & Soft Skills</h2>
+      <h3>Technical</h3>
+      <ul>
+        <li>RCC Design & Bar Bending Schedule</li>
+        <li>Surveying: Chain, Compass, Levelling</li>
+        <li>Concrete Tech: Mixing, Placing, Curing</li>
+        <li>Hydraulic Structures: Dams, Canals</li>
+        <li>Architectural Drawing: Plan, Section, Elevation</li>
+        <li>Environmental Consideration in Civil Design</li>
+        <li>On-site Communication & Coordination</li>
+      </ul>
+      <h3>Soft Skills</h3>
+      <ul>
+        <li>Professional Communication</li>
+        <li>Leadership & Team Collaboration</li>
+        <li>Time Management</li>
+        <li>Site Discipline & Responsibility</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Research Projects & Hypotheses</h2>
+      <div class="project">
+        <h3>🌌 The Colour of Emptiness</h3>
+        <p>Explores the dimensional origin of darkness in space and the role of dark energy in photon absorption beyond visibility.</p>
+        <a class="button" href="The_Colour_of_Emptiness.pdf" target="_blank">View PDF</a>
+      </div>
+      <div class="project">
+        <h3>⚡ Stormcore Project</h3>
+        <p>A multi-energy reactor concept using charged cloud systems and hydraulic pressure to generate steam, electricity, and desalination.</p>
+        <a class="button" href="STORMCORE.pdf" target="_blank">View PDF</a>
+      </div>
+      <div class="project">
+        <h3>🧲 MDMG Theory</h3>
+        <p>Magnetic fields interacting with solar plasma may disturb quantum vacuum, potentially generating dark energy particles.</p>
+        <a class="button" href="MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">View PDF</a>
+      </div>
+      <div class="project">
+        <h3>🧪 A's Binder</h3>
+        <p>Composite road binder using plastic waste, silica, fly ash, and fibers — engineered for sustainability and extreme weather.</p>
+        <a class="button" href="A_s_Binder.pdf" target="_blank">View PDF</a>
+      </div>
+      <div class="project">
+        <h3>🔦 Hidden Nature of Light</h3>
+        <p>A radical proposal to reimagine light as a dimensional plasma-like field. Philosophical physics meets testable formulations.</p>
+        <a class="button" href="Hidden_Nature_of_Light (1).pdf" target="_blank">View PDF</a>
+      </div>
+    </section>
+
+    <section id="vision">
+      <h2>Vision Statement</h2>
+      <p>I aim to bridge civil engineering with theoretical physics to redefine how humanity builds its future — on Earth and beyond. From space colonization to manipulating fundamental forces, my mission is to develop theories and innovations that reshape science, technology, and understanding of reality itself.</p>
+    </section>
+
+    <section id="contact">
+      <h2>📩 Contact</h2>
+      <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/drasura666" target="_blank">github.com/drasura666</a></p>
+    </section>
+
+    <section id="license">
+      <h2>📜 License</h2>
+      <p>This website and its content are licensed under the <strong>Creative Commons Attribution-NonCommercial 4.0 International License</strong>.</p>
+      <p>To view a copy of this license, visit <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">https://creativecommons.org/licenses/by-nc/4.0/</a></p>
+    </section>
   </main>
 
   <footer>
