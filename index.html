@@ -1,211 +1,253 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Asura | Independent Researcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Orbitron', sans-serif;
       background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 100%);
       color: #e0f7fa;
       overflow-x: hidden;
     }
-
-    body::before {
-      content: '';
+    canvas#stars {
       position: fixed;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-      opacity: 0.35; /* increased from 0.15 */
-      z-index: -1;
-      animation: starfield 100s linear infinite;
+      width: 100vw;
+      height: 100vh;
+      z-index: -10;
     }
-
-    @keyframes starfield {
-      0% { background-position: 0 0; }
-      100% { background-position: 10000px 10000px; }
-    }
-
     header {
       padding: 2rem;
       text-align: center;
       background: rgba(0, 0, 50, 0.8);
-      box-shadow: 0 0 20px #00ffc3;
+      box-shadow: 0 0 30px #00ffc3;
     }
-
     header h1 {
       margin: 0;
-      font-size: 2.5rem;
-      color: #00ffc3;
+      font-size: 3.5rem;
+      color: #fff;
+      background: linear-gradient(to right, #00ffc3, #ff00cc, #00ffff);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: glow 3s ease-in-out infinite;
     }
-
+    @keyframes glow {
+      0% {text-shadow: 0 0 10px #00ffc3;}
+      50% {text-shadow: 0 0 20px #ff00cc;}
+      100% {text-shadow: 0 0 10px #00ffc3;}
+    }
     nav {
       text-align: center;
       background: #111;
       padding: 1rem;
     }
-
     nav a {
       margin: 0 1rem;
       color: #00fff7;
       text-decoration: none;
       font-weight: bold;
+      position: relative;
     }
-
-    nav a:hover {
-      color: #ffffff;
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #00fff7;
+      transition: width .3s;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
     }
-
+    nav a:hover::after {
+      width: 100%;
+    }
     main {
       padding: 2rem;
       max-width: 1100px;
       margin: auto;
     }
-
     section {
       margin-bottom: 3rem;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 1.5rem;
+      background: rgba(0,0,0,0.4);
+      padding: 2rem;
       border-radius: 1rem;
-      box-shadow: 0 0 12px #0078a3;
+      box-shadow: 0 0 20px #00bcd4aa;
+      backdrop-filter: blur(5px);
     }
-
     h2 {
       color: #00ffc3;
-      font-size: 1.6rem;
+      font-size: 2rem;
+      border-left: 4px solid #00fff7;
+      padding-left: 1rem;
     }
-
     .project {
-      margin: 1rem 0;
+      margin: 1.5rem 0;
       padding: 1rem;
-      border: 1px solid #00e5ff;
+      border: 2px solid #00e5ff;
       border-radius: 1rem;
-      background: #00151f;
-      box-shadow: 0 0 8px #00eaff66;
+      background: rgba(0, 21, 31, 0.9);
+      box-shadow: 0 0 15px #00eaff66;
+      transition: transform 0.3s ease;
     }
-
-    .project a {
-      color: #00eaff;
-      text-decoration: none;
+    .project:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 30px #00ffff99;
+    }
+    .glow-tag {
+      display: inline-block;
+      color: #fff;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #00ffc3, #0078a3);
+      box-shadow: 0 0 15px #00ffc3;
       font-weight: bold;
     }
-
     footer {
       text-align: center;
-      padding: 1rem;
+      padding: 2rem 1rem;
       background: #111;
       color: #888;
-    }
-
-    .button {
-      background: #00ffc3;
-      color: #000;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 10px;
-      margin-top: 0.5rem;
-      display: inline-block;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .button:hover {
-      background: #00c8a7;
+      position: relative;
     }
   </style>
 </head>
 <body>
+  <canvas id="stars"></canvas>
   <header>
     <h1>Dr. Asura</h1>
     <p>Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
-  </header>
-
-  <nav>
+  </header>  <nav>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#vision">Vision</a>
     <a href="#contact">Contact</a>
-  </nav>
-
-  <main>
-    <section id="about">
+    <a href="#license">License</a>
+  </nav>  <main>
+    <section id="about" data-aos="fade-up">
       <h2>About Me</h2>
-      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space-time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
-    </section>
+      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space-time manipulation and advanced material science.</p>
+    </section><section id="skills" data-aos="fade-up">
+  <h2>Technical & Soft Skills</h2>
+  <h3>Technical</h3>
+  <ul>
+    <li>RCC Design & Bar Bending Schedule</li>
+    <li>Surveying: Chain, Compass, Levelling</li>
+    <li>Concrete Tech: Mixing, Placing, Curing</li>
+    <li>Hydraulic Structures: Dams, Canals</li>
+    <li>Architectural Drawing: Plan, Section, Elevation</li>
+    <li>Environmental Consideration in Civil Design</li>
+    <li>On-site Communication & Coordination</li>
+  </ul>
+  <h3>Soft Skills</h3>
+  <ul>
+    <li>Professional Communication</li>
+    <li>Leadership & Team Collaboration</li>
+    <li>Time Management</li>
+    <li>Site Discipline & Responsibility</li>
+  </ul>
+</section>
 
-    <section id="skills">
-      <h2>Technical & Soft Skills</h2>
-      <h3>Technical</h3>
-      <ul>
-        <li>RCC Design & Bar Bending Schedule</li>
-        <li>Surveying: Chain, Compass, Levelling</li>
-        <li>Concrete Tech: Mixing, Placing, Curing</li>
-        <li>Hydraulic Structures: Dams, Canals</li>
-        <li>Architectural Drawing: Plan, Section, Elevation</li>
-        <li>Environmental Consideration in Civil Design</li>
-        <li>On-site Communication & Coordination</li>
-      </ul>
-      <h3>Soft Skills</h3>
-      <ul>
-        <li>Professional Communication</li>
-        <li>Leadership & Team Collaboration</li>
-        <li>Time Management</li>
-        <li>Site Discipline & Responsibility</li>
-      </ul>
-    </section>
+<section id="projects" data-aos="fade-up">
+  <h2>Research Projects & Hypotheses</h2>
+  <div class="project">
+    <h3>🌌 The Colour of Emptiness</h3>
+    <p>Dimensional origin of darkness in space and role of dark energy in photon absorption beyond visibility.</p>
+    <span class="glow-tag">DR. ASURA</span>
+  </div>
+  <div class="project">
+    <h3>⚡ Stormcore Project</h3>
+    <p>Multi-energy reactor concept using charged cloud systems and hydraulic pressure.</p>
+    <span class="glow-tag">DR. ASURA</span>
+  </div>
+  <div class="project">
+    <h3>🧲 MDMG Theory</h3>
+    <p>Magnetic fields interacting with solar plasma may disturb quantum vacuum, generating dark energy particles.</p>
+    <span class="glow-tag">DR. ASURA</span>
+  </div>
+  <div class="project">
+    <h3>🧪 A's Binder</h3>
+    <p>Composite road binder using waste materials engineered for sustainability.</p>
+    <span class="glow-tag">DR. ASURA</span>
+  </div>
+  <div class="project">
+    <h3>🔦 Hidden Nature of Light</h3>
+    <p>A radical proposal to reimagine light as a dimensional plasma-like field.</p>
+    <span class="glow-tag">DR. ASURA</span>
+  </div>
+</section>
 
-    <section id="projects">
-      <h2>Research Projects & Hypotheses</h2>
-      <div class="project">
-        <h3>🌌 The Colour of Emptiness</h3>
-        <p>Explores the dimensional origin of darkness in space and the role of dark energy in photon absorption beyond visibility.</p>
-        <a class="button" href="The_Colour_of_Emptiness.pdf" target="_blank">View PDF</a>
-      </div>
-      <div class="project">
-        <h3>⚡ Stormcore Project</h3>
-        <p>A multi-energy reactor concept using charged cloud systems and hydraulic pressure to generate steam, electricity, and desalination.</p>
-        <a class="button" href="STORMCORE.pdf" target="_blank">View PDF</a>
-      </div>
-      <div class="project">
-        <h3>🧲 MDMG Theory</h3>
-        <p>Magnetic fields interacting with solar plasma may disturb quantum vacuum, potentially generating dark energy particles.</p>
-        <a class="button" href="MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">View PDF</a>
-      </div>
-      <div class="project">
-        <h3>🧪 A's Binder</h3>
-        <p>Composite road binder using plastic waste, silica, fly ash, and fibers — engineered for sustainability and extreme weather.</p>
-        <a class="button" href="A_s_Binder.pdf" target="_blank">View PDF</a>
-      </div>
-      <div class="project">
-        <h3>🔦 Hidden Nature of Light</h3>
-        <p>A radical proposal to reimagine light as a dimensional plasma-like field. Philosophical physics meets testable formulations.</p>
-        <a class="button" href="Hidden_Nature_of_Light (1).pdf" target="_blank">View PDF</a>
-      </div>
-    </section>
+<section id="vision" data-aos="fade-up">
+  <h2>Vision Statement</h2>
+  <p>I aim to bridge civil engineering with theoretical physics to redefine how humanity builds its future — on Earth and beyond.</p>
+</section>
 
-    <section id="vision">
-      <h2>Vision Statement</h2>
-      <p>I aim to bridge civil engineering with theoretical physics to redefine how humanity builds its future — on Earth and beyond. From space colonization to manipulating fundamental forces, my mission is to develop theories and innovations that reshape science, technology, and understanding of reality itself.</p>
-    </section>
+<section id="contact" data-aos="fade-up">
+  <h2>📩 Contact</h2>
+  <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
+  <p>GitHub: <a href="https://github.com/drasura666" target="_blank">github.com/drasura666</a></p>
+</section>
 
-    <section id="contact">
-      <h2>📩 Contact</h2>
-      <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/drasura666" target="_blank">github.com/drasura666</a></p>
-    </section>
-    <section id="license">
+<section id="license" data-aos="fade-up">
   <h2>📜 License</h2>
   <p>This website and its content are licensed under the <strong>Creative Commons Attribution-NonCommercial 4.0 International License</strong>.</p>
-  <p>To view a copy of this license, visit <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">https://creativecommons.org/licenses/by-nc/4.0/</a></p>
-    </section>
-  </main>
+  <p><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">View License</a></p>
+</section>
 
-  <footer>
+  </main>  <footer>
     <p>© 2025 Dr. Asura. All Rights Reserved.</p>
-  </footer>
-</body>
+  </footer>  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>  <script>
+    AOS.init();
+    // Star canvas effect
+    const canvas = document.getElementById("stars"),
+      ctx = canvas.getContext("2d"),
+      stars = 500,
+      starArr = [];
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    for (let i = 0; i < stars; i++) {
+      starArr.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5,
+        d: Math.random() * 0.5 + 0.5,
+      });
+    }
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#ffffff";
+      ctx.shadowBlur = 5;
+      ctx.shadowColor = "#00fff7";
+      for (let i = 0; i < stars; i++) {
+        const s = starArr[i];
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2, true);
+        ctx.fill();
+      }
+      moveStars();
+    }
+    function moveStars() {
+      for (let i = 0; i < stars; i++) {
+        let s = starArr[i];
+        s.y += s.d;
+        if (s.y > canvas.height) {
+          s.y = 0;
+          s.x = Math.random() * canvas.width;
+        }
+      }
+    }
+    function animateStars() {
+      drawStars();
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+  </script></body>
 </html>
