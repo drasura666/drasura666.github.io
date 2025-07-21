@@ -5,64 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Asura | Independent Researcher</title>
 
-  <!-- SEO & Structured Data -->
+  <!-- SEO / robots / sitemap integration -->
   <meta name="robots" content="index, follow">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Dr. Asura",
-    "alternateName": "dr.asura666",
-    "url": "https://drasura666.github.io",
-    "image": "https://drasura666.github.io/assets/asura-profile.jpg",
-    "sameAs": ["https://github.com/drasura666"],
-    "jobTitle": "Independent Researcher",
-    "email": "mailto:dr.asura666@gmail.com",
-    "description": "Independent researcher focused on theoretical physics, civil engineering, and space-time innovation.",
-    "knowsAbout": ["Theoretical Physics","Civil Engineering","Space-time Manipulation","Material Science","Energy Generation","Cosmology","Black Hole Physics","Dark Energy"],
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://drasura666.github.io"
-    }
-  }
-  </script>
 
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
       font-family: 'Segoe UI', sans-serif;
       background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 100%);
       color: #e0f7fa;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
-    canvas {
+    /* Starfield background */
+    body::before {
+      content: '';
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      opacity: 0.35;
       z-index: -1;
+      animation: starfield 100s linear infinite;
     }
 
-    header, nav, main, footer {
-      position: relative;
-      z-index: 10;
+    @keyframes starfield {
+      0%   { background-position: 0 0; }
+      100% { background-position: 10000px 10000px; }
+    }
+
+    /* Header + neon effects */
+    @keyframes rotatePlanet {
+      0%   { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
     }
 
     header {
       padding: 2rem;
       text-align: center;
-      background: rgba(0,0,50,0.6);
+      background: rgba(0,0,50,0.8);
       box-shadow: 0 0 20px #00ffc3;
+      position: relative;
     }
 
     header h1 {
       margin: 0;
       font-size: 2.5rem;
       color: #00ffc3;
-      text-shadow: 0 0 15px #00fff2;
+      text-shadow: 0 0 8px #00fff2, 0 0 15px #00fff2, 0 0 25px #00ffc3;
+      display: inline-block;
+      position: relative;
+    }
+
+    .planet {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00fff2, #006666);
+      position: absolute;
+      right: -35px;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 0 15px #00ffc3, 0 0 30px #00ffff;
+      animation: rotatePlanet 4s linear infinite;
+      transform-origin: -20px center;
     }
 
     nav {
@@ -138,9 +145,8 @@
   </style>
 </head>
 <body>
-  <canvas id="cosmicCanvas"></canvas>
   <header>
-    <h1>Dr. Asura</h1>
+    <h1>Dr. Asura<span class="planet"></span></h1>
     <p>Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
   </header>
 
@@ -154,11 +160,13 @@
   </nav>
 
   <main>
+    <!-- About -->
     <section id="about">
       <h2>About Me</h2>
-      <p>Dedicated, visionary Civil Engineering student passionate about theoretical physics and scientific breakthroughs. I research energy harvesting, space-time manipulation, and cosmic structure formation to develop theories that challenge modern understanding.</p>
+      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space‑time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
     </section>
 
+    <!-- Skills -->
     <section id="skills">
       <h2>Technical & Soft Skills</h2>
       <h3>Technical</h3>
@@ -180,21 +188,24 @@
       </ul>
     </section>
 
+    <!-- Projects -->
     <section id="projects">
       <h2>Research Projects & Hypotheses</h2>
+
+      <!-- Project blocks -->
       <div class="project">
         <h3>🌌 The Colour of Emptiness</h3>
-        <p>Dimensional darkness and dark energy interaction with photons.</p>
+        <p>Explores dimensional origin of darkness in space and dark‑energy photon absorption.</p>
         <a href="The_Colour_of_Emptiness.pdf" target="_blank">View PDF</a>
       </div>
       <div class="project">
         <h3>⚡ Stormcore Project</h3>
-        <p>Multi-energy cloud-charged reactor concept.</p>
+        <p>A multi‑energy reactor concept using charged cloud systems and hydraulic pressure for steam, electricity, desalination.</p>
         <a href="STORMCORE.pdf" target="_blank">View PDF</a>
       </div>
       <div class="project">
         <h3>🧲 MDMG Theory</h3>
-        <p>Magnetic interaction with solar plasma affecting quantum vacuum.</p>
+        <p>Magnetic fields + solar plasma → quantum vacuum disturbance, dark‑energy like particle production.</p>
         <a href="MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">View PDF</a>
       </div>
       <div class="project">
@@ -207,79 +218,31 @@
         <p>Radical plasma‑like dimensional model of light, blending philosophy with testable formulations.</p>
         <a href="Hidden_Nature_of_Light (1).pdf" target="_blank">View PDF</a>
       </div>
+
     </section>
 
+    <!-- Vision -->
     <section id="vision">
       <h2>Vision Statement</h2>
       <p>I aim to bridge civil engineering with theoretical physics to redefine humanity’s future—on Earth and beyond. From space colonization to manipulating fundamental forces, my mission is to develop innovations that reshape technology and our understanding of reality.</p>
     </section>
 
+    <!-- Contact -->
     <section id="contact">
       <h2>📩 Contact</h2>
       <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
       <p>GitHub: <a href="https://github.com/drasura666" target="_blank">github.com/drasura666</a></p>
     </section>
 
+    <!-- License -->
     <section id="license">
       <h2>📜 License</h2>
-      <p>This website and its content are licensed under the <strong>Creative Commons Attribution‑NonCommercial 4.0 International License</strong>.</p>
-      <p><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">License details</a></p>
+      <p>This website and its content are licensed under the <strong>Creative Commons Attribution‑NonCommercial 4.0 International License</strong>. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">License details</a></p>
     </section>
   </main>
 
   <footer>
     <p>© 2025 Dr. Asura. All Rights Reserved.</p>
   </footer>
-
-  <script>
-    const canvas = document.getElementById('cosmicCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let sparks = [];
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    function createSpark(x, y) {
-      for (let i = 0; i < 30; i++) {
-        sparks.push({
-          x,
-          y,
-          radius: Math.random() * 3 + 1,
-          dx: (Math.random() - 0.5) * 8,
-          dy: (Math.random() - 0.5) * 8,
-          life: 60
-        });
-      }
-    }
-
-    window.addEventListener('click', e => createSpark(e.clientX, e.clientY));
-    window.addEventListener('touchstart', e => createSpark(e.touches[0].clientX, e.touches[0].clientY));
-
-    function animate() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      for (let i = sparks.length - 1; i >= 0; i--) {
-        let p = sparks[i];
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 255, 255, ${p.life / 60})`;
-        ctx.fill();
-        p.x += p.dx;
-        p.y += p.dy;
-        p.life--;
-        if (p.life <= 0) sparks.splice(i, 1);
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
 </body>
 </html>
