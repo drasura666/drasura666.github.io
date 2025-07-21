@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Asura | Independent Researcher</title>
+
+  <!-- SEO / robots / sitemap integration -->
+  <meta name="robots" content="index, follow">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
   <style>
     body {
       margin: 0;
@@ -13,6 +18,7 @@
       overflow-x: hidden;
     }
 
+    /* Starfield background */
     body::before {
       content: '';
       position: fixed;
@@ -25,19 +31,20 @@
     }
 
     @keyframes starfield {
-      0% { background-position: 0 0; }
+      0%   { background-position: 0 0; }
       100% { background-position: 10000px 10000px; }
     }
 
+    /* Header + neon effects */
     @keyframes rotatePlanet {
-      0% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+      0%   { transform: rotate(0deg) translateX(20px) rotate(0deg); }
       100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
     }
 
     header {
       padding: 2rem;
       text-align: center;
-      background: rgba(0, 0, 50, 0.8);
+      background: rgba(0,0,50,0.8);
       box-shadow: 0 0 20px #00ffc3;
       position: relative;
     }
@@ -77,10 +84,7 @@
       text-decoration: none;
       font-weight: bold;
     }
-
-    nav a:hover {
-      color: #ffffff;
-    }
+    nav a:hover { color: #ffffff; }
 
     main {
       padding: 2rem;
@@ -90,7 +94,7 @@
 
     section {
       margin-bottom: 3rem;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0,0,0,0.6);
       padding: 1.5rem;
       border-radius: 1rem;
       box-shadow: 0 0 12px #0078a3;
@@ -98,16 +102,12 @@
       transform: translateY(20px);
       animation: fadeInUp 1s forwards;
     }
-
     section:nth-of-type(2) { animation-delay: 0.2s; }
     section:nth-of-type(3) { animation-delay: 0.4s; }
     section:nth-of-type(4) { animation-delay: 0.6s; }
 
     @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity:1; transform: translateY(0); }
     }
 
     h2 {
@@ -134,34 +134,13 @@
       border-radius: 5px;
       transition: color 0.3s ease;
     }
-
-    .project a:hover {
-      color: #ffffff;
-    }
+    .project a:hover { color: #ffffff; }
 
     footer {
       text-align: center;
       padding: 1rem;
       background: #111;
       color: #888;
-    }
-
-    .button {
-      background: none;
-      color: #00ffc3;
-      padding: 0.5rem 1rem;
-      border: 2px solid #00ffc3;
-      border-radius: 10px;
-      margin-top: 0.5rem;
-      display: inline-block;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .button:hover {
-      background: #00ffc3;
-      color: #000;
     }
   </style>
 </head>
@@ -177,14 +156,17 @@
     <a href="#projects">Projects</a>
     <a href="#vision">Vision</a>
     <a href="#contact">Contact</a>
+    <a href="#license">License</a>
   </nav>
 
   <main>
+    <!-- About -->
     <section id="about">
       <h2>About Me</h2>
-      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space-time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
+      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space‑time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
     </section>
 
+    <!-- Skills -->
     <section id="skills">
       <h2>Technical & Soft Skills</h2>
       <h3>Technical</h3>
@@ -195,7 +177,7 @@
         <li>Hydraulic Structures: Dams, Canals</li>
         <li>Architectural Drawing: Plan, Section, Elevation</li>
         <li>Environmental Consideration in Civil Design</li>
-        <li>On-site Communication & Coordination</li>
+        <li>On‑site Communication & Coordination</li>
       </ul>
       <h3>Soft Skills</h3>
       <ul>
@@ -206,50 +188,56 @@
       </ul>
     </section>
 
+    <!-- Projects -->
     <section id="projects">
       <h2>Research Projects & Hypotheses</h2>
+
+      <!-- Project blocks -->
       <div class="project">
         <h3>🌌 The Colour of Emptiness</h3>
-        <p>Explores the dimensional origin of darkness in space and the role of dark energy in photon absorption beyond visibility.</p>
-        <a class="button" href="The_Colour_of_Emptiness.pdf" target="_blank">View PDF</a>
+        <p>Explores dimensional origin of darkness in space and dark‑energy photon absorption.</p>
+        <a href="The_Colour_of_Emptiness.pdf" target="_blank">View PDF</a>
       </div>
       <div class="project">
         <h3>⚡ Stormcore Project</h3>
-        <p>A multi-energy reactor concept using charged cloud systems and hydraulic pressure to generate steam, electricity, and desalination.</p>
-        <a class="button" href="STORMCORE.pdf" target="_blank">View PDF</a>
+        <p>A multi‑energy reactor concept using charged cloud systems and hydraulic pressure for steam, electricity, desalination.</p>
+        <a href="STORMCORE.pdf" target="_blank">View PDF</a>
       </div>
       <div class="project">
         <h3>🧲 MDMG Theory</h3>
-        <p>Magnetic fields interacting with solar plasma may disturb quantum vacuum, potentially generating dark energy particles.</p>
-        <a class="button" href="MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">View PDF</a>
+        <p>Magnetic fields + solar plasma → quantum vacuum disturbance, dark‑energy like particle production.</p>
+        <a href="MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">View PDF</a>
       </div>
       <div class="project">
         <h3>🧪 A's Binder</h3>
-        <p>Composite road binder using plastic waste, silica, fly ash, and fibers — engineered for sustainability and extreme weather.</p>
-        <a class="button" href="A_s_Binder.pdf" target="_blank">View PDF</a>
+        <p>Composite road binder using plastic waste, silica, fly‑ash, fibers—designed for sustainability and extreme conditions.</p>
+        <a href="A_s_Binder.pdf" target="_blank">View PDF</a>
       </div>
       <div class="project">
         <h3>🔦 Hidden Nature of Light</h3>
-        <p>A radical proposal to reimagine light as a dimensional plasma-like field. Philosophical physics meets testable formulations.</p>
-        <a class="button" href="Hidden_Nature_of_Light (1).pdf" target="_blank">View PDF</a>
+        <p>Radical plasma‑like dimensional model of light, blending philosophy with testable formulations.</p>
+        <a href="Hidden_Nature_of_Light (1).pdf" target="_blank">View PDF</a>
       </div>
+
     </section>
 
+    <!-- Vision -->
     <section id="vision">
       <h2>Vision Statement</h2>
-      <p>I aim to bridge civil engineering with theoretical physics to redefine how humanity builds its future — on Earth and beyond. From space colonization to manipulating fundamental forces, my mission is to develop theories and innovations that reshape science, technology, and understanding of reality itself.</p>
+      <p>I aim to bridge civil engineering with theoretical physics to redefine humanity’s future—on Earth and beyond. From space colonization to manipulating fundamental forces, my mission is to develop innovations that reshape technology and our understanding of reality.</p>
     </section>
 
+    <!-- Contact -->
     <section id="contact">
       <h2>📩 Contact</h2>
       <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
       <p>GitHub: <a href="https://github.com/drasura666" target="_blank">github.com/drasura666</a></p>
     </section>
 
+    <!-- License -->
     <section id="license">
       <h2>📜 License</h2>
-      <p>This website and its content are licensed under the <strong>Creative Commons Attribution-NonCommercial 4.0 International License</strong>.</p>
-      <p>To view a copy of this license, visit <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">https://creativecommons.org/licenses/by-nc/4.0/</a></p>
+      <p>This website and its content are licensed under the <strong>Creative Commons Attribution‑NonCommercial 4.0 International License</strong>. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">License details</a></p>
     </section>
   </main>
 
