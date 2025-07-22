@@ -293,87 +293,77 @@ window.addEventListener("click", e => {
   burst(e.clientX, e.clientY);
 });
 </script>
+  <canvas id="solarCanvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: -2;"></canvas>
 
 <script>
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    2000
-  );
-  const renderer = new THREE.WebGLRenderer({
-    canvas: document.getElementById("helixCanvas"),
-    alpha: true
+const canvas2 = document.getElementById("solarCanvas");
+const ctx2 = canvas2.getContext("2d");
+canvas2.width = window.innerWidth;
+canvas2.height = window.innerHeight;
+
+window.addEventListener("resize", () => {
+  canvas2.width = window.innerWidth;
+  canvas2.height = window.innerHeight;
+});
+
+const centerX = canvas2.width / 2;
+const centerY = canvas2.height / 2;
+
+// Scaled orbital data for realism
+const planets = [
+  { name: "Mercury", radius: 3, distance: 40, speed: 0.02, color: "#aaa" },
+  { name: "Venus",   radius: 5, distance: 60, speed: 0.015, color: "#e6c27a" },
+  { name: "Earth",   radius: 6, distance: 80, speed: 0.01, color: "#00f7ff" },
+  { name: "Mars",    radius: 5, distance: 100, speed: 0.008, color: "#f14c2f" },
+  { name: "Jupiter", radius: 9, distance: 140, speed: 0.004, color: "#d8b372" },
+  { name: "Saturn",  radius: 8, distance: 180, speed: 0.003, color: "#e9d690" },
+  { name: "Uranus",  radius: 7, distance: 220, speed: 0.002, color: "#99ffff" },
+  { name: "Neptune", radius: 7, distance: 260, speed: 0.001, color: "#4269f5" },
+];
+
+planets.forEach(p => p.angle = Math.random() * Math.PI * 2);
+
+function drawSun() {
+  ctx2.beginPath();
+  ctx2.arc(centerX, centerY, 15, 0, Math.PI * 2);
+  ctx2.fillStyle = "#ffff00";
+  ctx2.shadowBlur = 20;
+  ctx2.shadowColor = "#ffdd33";
+  ctx2.fill();
+  ctx2.shadowBlur = 0;
+}
+
+function drawOrbits() {
+  ctx2.strokeStyle = "rgba(255,255,255,0.1)";
+  planets.forEach(p => {
+    ctx2.beginPath();
+    ctx2.arc(centerX, centerY, p.distance, 0, Math.PI * 2);
+    ctx2.stroke();
   });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
+}
 
-  // Lighting
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-  const pointLight = new THREE.PointLight(0xffffff, 1.5, 1000);
-  pointLight.position.set(0, 0, 0);
-  scene.add(ambientLight, pointLight);
+function drawPlanets() {
+  planets.forEach(p => {
+    p.angle += p.speed;
+    const x = centerX + Math.cos(p.angle) * p.distance;
+    const y = centerY + Math.sin(p.angle) * p.distance;
 
-  // Sun
-  const sunGeo = new THREE.SphereGeometry(12, 32, 32);
-  const sunMat = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-  const sun = new THREE.Mesh(sunGeo, sunMat);
-  scene.add(sun); // ✅ This was missing
-
-  // Planets
-  const planets = [];
-  const planetColors = [
-    0xaaaaaa,
-    0xff5500,
-    0xffffaa,
-    0x3388ff,
-    0xff8844,
-    0xbbccff,
-    0xccffee,
-    0xeeeeee
-  ];
-  const radii = [25, 35, 50, 70, 95, 125, 160, 200];
-
-  for (let i = 0; i < 8; i++) {
-    const geo = new THREE.SphereGeometry(2, 16, 16);
-    const mat = new THREE.MeshStandardMaterial({ color: planetColors[i] });
-    const planet = new THREE.Mesh(geo, mat);
-    scene.add(planet);
-    planets.push({
-      mesh: planet,
-      radius: radii[i],
-      speed: 0.001 + i * 0.0002
-    });
-  }
-
-  camera.position.z = 300;
-
-  let angle = 0;
-  function animate() {
-    requestAnimationFrame(animate);
-    angle += 0.01;
-
-    // Helical motion for each planet
-    for (let i = 0; i < planets.length; i++) {
-      const p = planets[i];
-      const a = angle * p.speed * 300;
-      p.mesh.position.x = Math.cos(a) * p.radius;
-      p.mesh.position.z = Math.sin(a) * p.radius;
-      p.mesh.position.y = a * 0.1; // helical rise
-    }
-
-    renderer.render(scene, camera);
-  }
-
-  animate();
-
-  // Resize handling
-  window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    ctx2.beginPath();
+    ctx2.arc(x, y, p.radius, 0, Math.PI * 2);
+    ctx2.fillStyle = p.color;
+    ctx2.fill();
   });
-  </script>
+}
+
+function animateSolar() {
+  ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+  drawOrbits();
+  drawSun();
+  drawPlanets();
+  requestAnimationFrame(animateSolar);
+}
+
+animateSolar();
+</script>
 </body>
 </html>
