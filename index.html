@@ -307,6 +307,7 @@ window.addEventListener("click", e => {
     alpha: true
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
 
   // Lighting
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
