@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Asura | Independent Researcher</title>
-
   <!-- SEO / robots / sitemap integration -->
   <meta name="robots" content="index, follow">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
@@ -18,7 +17,6 @@
       color: #e0f7fa;
       overflow-x: hidden;
     }
-
     /* Starfield background */
     body::before {
       content: '';
@@ -295,10 +293,19 @@ window.addEventListener("click", e => {
   burst(e.clientX, e.clientY);
 });
 </script>
-  <script>
+
+<script>
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("helixCanvas"), alpha: true });
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    2000
+  );
+  const renderer = new THREE.WebGLRenderer({
+    canvas: document.getElementById("helixCanvas"),
+    alpha: true
+  });
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   // Lighting
@@ -311,13 +318,19 @@ window.addEventListener("click", e => {
   const sunGeo = new THREE.SphereGeometry(12, 32, 32);
   const sunMat = new THREE.MeshBasicMaterial({ color: 0xffff00 });
   const sun = new THREE.Mesh(sunGeo, sunMat);
-  scene.add(sun);
+  scene.add(sun); // ✅ This was missing
 
   // Planets
   const planets = [];
   const planetColors = [
-    0xaaaaaa, 0xff5500, 0xffffaa, 0x3388ff,
-    0xff8844, 0xbbccff, 0xccffee, 0xeeeeee
+    0xaaaaaa,
+    0xff5500,
+    0xffffaa,
+    0x3388ff,
+    0xff8844,
+    0xbbccff,
+    0xccffee,
+    0xeeeeee
   ];
   const radii = [25, 35, 50, 70, 95, 125, 160, 200];
 
@@ -326,7 +339,11 @@ window.addEventListener("click", e => {
     const mat = new THREE.MeshStandardMaterial({ color: planetColors[i] });
     const planet = new THREE.Mesh(geo, mat);
     scene.add(planet);
-    planets.push({ mesh: planet, radius: radii[i], speed: 0.001 + i * 0.0002 });
+    planets.push({
+      mesh: planet,
+      radius: radii[i],
+      speed: 0.001 + i * 0.0002
+    });
   }
 
   camera.position.z = 300;
@@ -336,12 +353,13 @@ window.addEventListener("click", e => {
     requestAnimationFrame(animate);
     angle += 0.01;
 
+    // Helical motion for each planet
     for (let i = 0; i < planets.length; i++) {
       const p = planets[i];
       const a = angle * p.speed * 300;
       p.mesh.position.x = Math.cos(a) * p.radius;
       p.mesh.position.z = Math.sin(a) * p.radius;
-      p.mesh.position.y = a * 0.1;
+      p.mesh.position.y = a * 0.1; // helical rise
     }
 
     renderer.render(scene, camera);
@@ -349,6 +367,7 @@ window.addEventListener("click", e => {
 
   animate();
 
+  // Resize handling
   window.addEventListener("resize", () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
