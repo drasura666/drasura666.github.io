@@ -146,7 +146,6 @@
 </head>
 <body>
   <canvas id="helixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
-  <div id="atom-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -4;"></div>
   <header>
     <h1>Dr. Asura<span class="planet"></span></h1>
     <p>Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
@@ -295,6 +294,67 @@ window.addEventListener("click", e => {
   burst(e.clientX, e.clientY);
 });
 </script>
+  <canvas id="atomHelixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3;"></canvas>
+  <script>
+  const helixCanvas = document.getElementById("atomHelixCanvas");
+  const helixCtx = helixCanvas.getContext("2d");
+  helixCanvas.width = window.innerWidth;
+  helixCanvas.height = window.innerHeight;
+
+  window.addEventListener("resize", () => {
+    helixCanvas.width = window.innerWidth;
+    helixCanvas.height = window.innerHeight;
+  });
+
+  let nucleusZ = 0;
+  const electrons = [];
+  const electronCount = 6;
+  for (let i = 0; i < electronCount; i++) {
+    electrons.push({ angle: (i / electronCount) * Math.PI * 2 });
+  }
+
+  function drawHelixAtom() {
+    helixCtx.clearRect(0, 0, helixCanvas.width, helixCanvas.height);
+    const centerX = helixCanvas.width / 2;
+    const centerY = helixCanvas.height / 2;
+
+    for (let i = 0; i < 50; i++) {
+      let fade = 1 - i / 50;
+      helixCtx.beginPath();
+      helixCtx.arc(centerX, centerY + i * 3, 6, 0, Math.PI * 2);
+      helixCtx.fillStyle = `rgba(255, 255, 0, ${fade * 0.4})`;
+      helixCtx.fill();
+    }
+
+    electrons.forEach(e => {
+      e.angle += 0.03;
+      let x = centerX + Math.cos(e.angle) * 50;
+      let y = centerY + Math.sin(e.angle) * 50;
+      let zOffset = Math.sin(e.angle * 2 + nucleusZ * 0.01) * 40;
+
+      helixCtx.beginPath();
+      helixCtx.arc(x, y + zOffset, 4, 0, Math.PI * 2);
+      helixCtx.fillStyle = "#00ffff";
+      helixCtx.shadowBlur = 5;
+      helixCtx.shadowColor = "#00ffff";
+      helixCtx.fill();
+      helixCtx.shadowBlur = 0;
+    });
+
+    helixCtx.beginPath();
+    helixCtx.arc(centerX, centerY, 8 + Math.sin(nucleusZ * 0.1) * 1.5, 0, Math.PI * 2);
+    helixCtx.fillStyle = "#ffff00";
+    helixCtx.shadowBlur = 15;
+    helixCtx.shadowColor = "#ffff00";
+    helixCtx.fill();
+    helixCtx.shadowBlur = 0;
+
+    nucleusZ++;
+    requestAnimationFrame(drawHelixAtom);
+  }
+
+  drawHelixAtom();
+  </script>
   <script>
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -340,74 +400,6 @@ window.addEventListener("click", e => {
   }
 
   animate();
-  </script>
-  <script>
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 30;
-
-  const renderer = new THREE.WebGLRenderer({
-    canvas: document.getElementById("helixCanvas"),
-    alpha: true,
-    antialias: true
-  });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setClearColor(0x000000, 0);
-
-  // LIGHTING
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
-  const pointLight = new THREE.PointLight(0xffffff, 1.5);
-  pointLight.position.set(0, 0, 0);
-  scene.add(ambientLight, pointLight);
-
-  // NUCLEUS
-  const nucleusGeometry = new THREE.SphereGeometry(1.5, 32, 32);
-  const nucleusMaterial = new THREE.MeshStandardMaterial({ color: 0xffaa00, emissive: 0xff8800 });
-  const nucleus = new THREE.Mesh(nucleusGeometry, nucleusMaterial);
-  scene.add(nucleus);
-
-  // ELECTRONS
-  const electrons = [];
-  const numElectrons = 6;
-  const radius = 8;
-
-  for (let i = 0; i < numElectrons; i++) {
-    const geo = new THREE.SphereGeometry(0.4, 16, 16);
-    const mat = new THREE.MeshStandardMaterial({ color: 0x00ffff });
-    const electron = new THREE.Mesh(geo, mat);
-    scene.add(electron);
-    electrons.push({
-      mesh: electron,
-      phase: (i / numElectrons) * Math.PI * 2
-    });
-  }
-
-  // ANIMATION
-  let time = 0;
-  function animate() {
-    requestAnimationFrame(animate);
-    time += 0.01;
-
-    nucleus.position.z = Math.sin(time * 0.5) * 0.5; // 4D nucleus drift
-
-    electrons.forEach((e, i) => {
-      const angle = time * 2 + e.phase;
-      e.mesh.position.x = Math.cos(angle) * radius;
-      e.mesh.position.y = Math.sin(angle) * radius;
-      e.mesh.position.z = Math.sin(angle * 2 + i) * 3 + nucleus.position.z;
-    });
-
-    renderer.render(scene, camera);
-  }
-
-  animate();
-
-  window.addEventListener("resize", () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
   </script>
 </body>
 </html>
