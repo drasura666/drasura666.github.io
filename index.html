@@ -145,7 +145,7 @@
   </style>
 </head>
 <body>
-  <canvas id="helixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
+  <div id="atom-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -4;"></div>
   <header>
     <h1>Dr. Asura<span class="planet"></span></h1>
     <p>Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
@@ -294,67 +294,6 @@ window.addEventListener("click", e => {
   burst(e.clientX, e.clientY);
 });
 </script>
-  <canvas id="atomHelixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3;"></canvas>
-  <script>
-  const helixCanvas = document.getElementById("atomHelixCanvas");
-  const helixCtx = helixCanvas.getContext("2d");
-  helixCanvas.width = window.innerWidth;
-  helixCanvas.height = window.innerHeight;
-
-  window.addEventListener("resize", () => {
-    helixCanvas.width = window.innerWidth;
-    helixCanvas.height = window.innerHeight;
-  });
-
-  let nucleusZ = 0;
-  const electrons = [];
-  const electronCount = 6;
-  for (let i = 0; i < electronCount; i++) {
-    electrons.push({ angle: (i / electronCount) * Math.PI * 2 });
-  }
-
-  function drawHelixAtom() {
-    helixCtx.clearRect(0, 0, helixCanvas.width, helixCanvas.height);
-    const centerX = helixCanvas.width / 2;
-    const centerY = helixCanvas.height / 2;
-
-    for (let i = 0; i < 50; i++) {
-      let fade = 1 - i / 50;
-      helixCtx.beginPath();
-      helixCtx.arc(centerX, centerY + i * 3, 6, 0, Math.PI * 2);
-      helixCtx.fillStyle = `rgba(255, 255, 0, ${fade * 0.4})`;
-      helixCtx.fill();
-    }
-
-    electrons.forEach(e => {
-      e.angle += 0.03;
-      let x = centerX + Math.cos(e.angle) * 50;
-      let y = centerY + Math.sin(e.angle) * 50;
-      let zOffset = Math.sin(e.angle * 2 + nucleusZ * 0.01) * 40;
-
-      helixCtx.beginPath();
-      helixCtx.arc(x, y + zOffset, 4, 0, Math.PI * 2);
-      helixCtx.fillStyle = "#00ffff";
-      helixCtx.shadowBlur = 5;
-      helixCtx.shadowColor = "#00ffff";
-      helixCtx.fill();
-      helixCtx.shadowBlur = 0;
-    });
-
-    helixCtx.beginPath();
-    helixCtx.arc(centerX, centerY, 8 + Math.sin(nucleusZ * 0.1) * 1.5, 0, Math.PI * 2);
-    helixCtx.fillStyle = "#ffff00";
-    helixCtx.shadowBlur = 15;
-    helixCtx.shadowColor = "#ffff00";
-    helixCtx.fill();
-    helixCtx.shadowBlur = 0;
-
-    nucleusZ++;
-    requestAnimationFrame(drawHelixAtom);
-  }
-
-  drawHelixAtom();
-  </script>
   <script>
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
