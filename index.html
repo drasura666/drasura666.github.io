@@ -403,3 +403,94 @@ window.addEventListener("click", e => {
   </script>
 </body>
 </html>
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Helical Atom Model</title>
+  <style>
+    body { margin: 0; overflow: hidden; background-color: black; }
+    canvas { display: block; }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+</head>
+<body>
+  <script>
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 20;const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const ambientLight = new THREE.AmbientLight(0x888888);
+scene.add(ambientLight);
+const pointLight = new THREE.PointLight(0xffffff, 1);
+pointLight.position.set(0, 0, 10);
+scene.add(pointLight);
+
+const nucleusGeometry = new THREE.SphereGeometry(1.5, 32, 32);
+const nucleusMaterial = new THREE.MeshStandardMaterial({ color: 0xffdd55, emissive: 0xffff00 });
+const nucleus = new THREE.Mesh(nucleusGeometry, nucleusMaterial);
+scene.add(nucleus);
+
+const electronCount = 4;
+const electrons = [];
+
+for (let i = 0; i < electronCount; i++) {
+  const electronGeometry = new THREE.SphereGeometry(0.3, 16, 16);
+  const electronMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+  const electron = new THREE.Mesh(electronGeometry, electronMaterial);
+  scene.add(electron);
+  electrons.push({ mesh: electron, phase: i * Math.PI / 2 });
+}
+
+const grid = new THREE.GridHelper(40, 40, 0x202020, 0x101010);
+grid.rotation.x = Math.PI / 2;
+scene.add(grid);
+
+function createHelixCurve(phase, height = 10, radius = 6, turns = 3) {
+  const points = [];
+  const segments = 100;
+  for (let i = 0; i <= segments; i++) {
+    const t = i / segments * turns * Math.PI * 2;
+    points.push(new THREE.Vector3(
+      Math.cos(t + phase) * radius,
+      (t / (Math.PI * 2 * turns)) * height - height / 2,
+      Math.sin(t + phase) * radius
+    ));
+  }
+  return new THREE.CatmullRomCurve3(points);
+}
+
+const paths = electrons.map(e => {
+  const curve = createHelixCurve(e.phase);
+  const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(300));
+  const material = new THREE.LineDashedMaterial({ color: 0x00ccff, dashSize: 0.2, gapSize: 0.1 });
+  const line = new THREE.Line(geometry, material);
+  line.computeLineDistances();
+  scene.add(line);
+  return curve;
+});
+
+let t = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  t += 0.01;
+  electrons.forEach((e, i) => {
+    const pos = paths[i].getPoint((t + i * 0.25) % 1);
+    e.mesh.position.copy(pos);
+  });
+  nucleus.position.y = Math.sin(t * 2) * 0.5;
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+  </script>
+</body>
+</html>
