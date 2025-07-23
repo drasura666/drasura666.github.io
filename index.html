@@ -4,6 +4,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
   <title>Dr. Asura | Independent Researcher</title>
   <!-- SEO / robots / sitemap integration -->
   <meta name="robots" content="index, follow">
@@ -353,6 +354,52 @@ window.addEventListener("click", e => {
   }
 
   drawHelixAtom();
+  </script>
+  <script>
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.getElementById("atom-container").appendChild(renderer.domElement);
+
+  const nucleusGeometry = new THREE.SphereGeometry(0.4, 32, 32);
+  const nucleusMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+  const nucleus = new THREE.Mesh(nucleusGeometry, nucleusMaterial);
+  scene.add(nucleus);
+
+  const electronGroup = new THREE.Group();
+  scene.add(electronGroup);
+
+  const electrons = [];
+  const radius = 2;
+  const count = 5;
+
+  for (let i = 0; i < count; i++) {
+    const electronGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+    const electronMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+    const electron = new THREE.Mesh(electronGeometry, electronMaterial);
+    electronGroup.add(electron);
+    electrons.push({ mesh: electron, angle: (i * Math.PI * 2) / count });
+  }
+
+  camera.position.z = 5;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    let time = Date.now() * 0.001;
+
+    for (let i = 0; i < electrons.length; i++) {
+      let e = electrons[i];
+      e.mesh.position.x = radius * Math.cos(time + e.angle);
+      e.mesh.position.y = radius * Math.sin(time + e.angle);
+      e.mesh.position.z = Math.sin((time + e.angle) * 2) * 1.5;
+    }
+
+    nucleus.scale.setScalar(1 + 0.05 * Math.sin(time * 3));
+    renderer.render(scene, camera);
+  }
+
+  animate();
   </script>
 </body>
 </html>
