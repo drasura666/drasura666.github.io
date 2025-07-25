@@ -145,6 +145,23 @@
   </style>
 </head>
 <body>
+  <h1 id="asura-name">Dr. Asura</h1>
+<audio id="thunder-sound" src="https://www.soundjay.com/nature/thunder-01.mp3"></audio>
+  <script>
+  const nameElement = document.getElementById("asura-name");
+  const thunderSound = document.getElementById("thunder-sound");
+
+  nameElement.addEventListener("click", () => {
+    thunderSound.currentTime = 0;
+    thunderSound.play();
+
+    nameElement.classList.add("flash");
+
+    setTimeout(() => {
+      nameElement.classList.remove("flash");
+    }, 200);
+  });
+  </script>
   <canvas id="helixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
   <header>
     <h1>Dr. Asura<span class="planet"></span></h1>
