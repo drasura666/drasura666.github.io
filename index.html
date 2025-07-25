@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
   <title>Dr. Asura | Independent Researcher</title>
-  <!-- SEO / robots / sitemap integration -->
-  <meta name="robots" content="index, follow">
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 
+  <!-- SEO Meta -->
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Official website of Dr. Asura – Independent Researcher in Civil Engineering, Theoretical Physics, and Cosmology.">
+  <meta name="keywords" content="Dr. Asura, Independent Researcher, Cosmology, Quantum Physics, Engineering, Space-Time, Future Research, GitHub Pages">
+  <meta name="author" content="Dr. Asura">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+  <link rel="canonical" href="https://drasura666.github.io" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dr. Asura | Official Website">
+  <meta property="og:description" content="Explore futuristic theories in Cosmology, Quantum Structures, and Civil Engineering.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://drasura666.github.io">
+  <meta property="og:image" content="https://drasura666.github.io/preview.jpg">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dr. Asura",
+    "url": "https://drasura666.github.io",
+    "jobTitle": "Independent Researcher",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Self-directed Research"
+    },
+    "sameAs": [
+      "https://github.com/drasura666"
+    ],
+    "description": "Independent visionary and researcher exploring theoretical physics, cosmology, and futuristic civil engineering concepts."
+  }
+  </script>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
+
+  <!-- Styles -->
   <style>
     body {
       margin: 0;
@@ -18,7 +52,7 @@
       color: #e0f7fa;
       overflow-x: hidden;
     }
-    /* Starfield background */
+
     body::before {
       content: '';
       position: fixed;
@@ -31,14 +65,8 @@
     }
 
     @keyframes starfield {
-      0%   { background-position: 0 0; }
+      0% { background-position: 0 0; }
       100% { background-position: 10000px 10000px; }
-    }
-
-    /* Header + neon effects */
-    @keyframes rotatePlanet {
-      0%   { transform: rotate(0deg) translateX(20px) rotate(0deg); }
-      100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
     }
 
     header {
@@ -54,22 +82,6 @@
       font-size: 2.5rem;
       color: #00ffc3;
       text-shadow: 0 0 8px #00fff2, 0 0 15px #00fff2, 0 0 25px #00ffc3;
-      display: inline-block;
-      position: relative;
-    }
-
-    .planet {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #00fff2, #006666);
-      position: absolute;
-      right: -35px;
-      top: 50%;
-      transform: translateY(-50%);
-      box-shadow: 0 0 15px #00ffc3, 0 0 30px #00ffff;
-      animation: rotatePlanet 4s linear infinite;
-      transform-origin: -20px center;
     }
 
     nav {
@@ -84,7 +96,10 @@
       text-decoration: none;
       font-weight: bold;
     }
-    nav a:hover { color: #ffffff; }
+
+    nav a:hover {
+      color: #ffffff;
+    }
 
     main {
       padding: 2rem;
@@ -102,12 +117,12 @@
       transform: translateY(20px);
       animation: fadeInUp 1s forwards;
     }
-    section:nth-of-type(2) { animation-delay: 0.2s; }
-    section:nth-of-type(3) { animation-delay: 0.4s; }
-    section:nth-of-type(4) { animation-delay: 0.6s; }
 
     @keyframes fadeInUp {
-      to { opacity:1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h2 {
@@ -128,13 +143,7 @@
       color: #00eaff;
       text-decoration: none;
       font-weight: bold;
-      background: none;
-      border: none;
-      padding: 0.3rem;
-      border-radius: 5px;
-      transition: color 0.3s ease;
     }
-    .project a:hover { color: #ffffff; }
 
     footer {
       text-align: center;
