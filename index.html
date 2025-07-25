@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-  <title>Shreyansh Mishra | Independent Researcher</title>
+  <title>Dr. Asura | Independent Researcher</title>
   <!-- SEO / robots / sitemap integration -->
   <meta name="robots" content="index, follow">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
@@ -18,6 +18,7 @@
       color: #e0f7fa;
       overflow-x: hidden;
     }
+    /* Starfield background */
     body::before {
       content: '';
       position: fixed;
@@ -28,14 +29,18 @@
       z-index: -1;
       animation: starfield 100s linear infinite;
     }
+
     @keyframes starfield {
       0%   { background-position: 0 0; }
       100% { background-position: 10000px 10000px; }
     }
+
+    /* Header + neon effects */
     @keyframes rotatePlanet {
       0%   { transform: rotate(0deg) translateX(20px) rotate(0deg); }
       100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
     }
+
     header {
       padding: 2rem;
       text-align: center;
@@ -43,6 +48,7 @@
       box-shadow: 0 0 20px #00ffc3;
       position: relative;
     }
+
     header h1 {
       margin: 0;
       font-size: 2.5rem;
@@ -51,6 +57,7 @@
       display: inline-block;
       position: relative;
     }
+
     .planet {
       width: 20px;
       height: 20px;
@@ -64,11 +71,13 @@
       animation: rotatePlanet 4s linear infinite;
       transform-origin: -20px center;
     }
+
     nav {
       text-align: center;
       background: #111;
       padding: 1rem;
     }
+
     nav a {
       margin: 0 1rem;
       color: #00fff7;
@@ -76,11 +85,13 @@
       font-weight: bold;
     }
     nav a:hover { color: #ffffff; }
+
     main {
       padding: 2rem;
       max-width: 1100px;
       margin: auto;
     }
+
     section {
       margin-bottom: 3rem;
       background: rgba(0,0,0,0.6);
@@ -94,13 +105,16 @@
     section:nth-of-type(2) { animation-delay: 0.2s; }
     section:nth-of-type(3) { animation-delay: 0.4s; }
     section:nth-of-type(4) { animation-delay: 0.6s; }
+
     @keyframes fadeInUp {
       to { opacity:1; transform: translateY(0); }
     }
+
     h2 {
       color: #00ffc3;
       font-size: 1.6rem;
     }
+
     .project {
       margin: 1rem 0;
       padding: 1rem;
@@ -109,6 +123,7 @@
       background: #00151f;
       box-shadow: 0 0 8px #00eaff66;
     }
+
     .project a {
       color: #00eaff;
       text-decoration: none;
@@ -120,6 +135,7 @@
       transition: color 0.3s ease;
     }
     .project a:hover { color: #ffffff; }
+
     footer {
       text-align: center;
       padding: 1rem;
@@ -131,7 +147,7 @@
 <body>
   <canvas id="helixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
   <header>
-    <h1>Shreyansh Mishra<span class="planet"></span></h1>
+    <h1>Dr. Asura<span class="planet"></span></h1>
     <p>Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
   </header>
 
@@ -145,11 +161,13 @@
   </nav>
 
   <main>
+    <!-- About -->
     <section id="about">
       <h2>About Me</h2>
       <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space‑time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
     </section>
 
+    <!-- Skills -->
     <section id="skills">
       <h2>Technical & Soft Skills</h2>
       <h3>Technical</h3>
@@ -171,8 +189,11 @@
       </ul>
     </section>
 
+    <!-- Projects -->
     <section id="projects">
       <h2>Research Projects & Hypotheses</h2>
+
+      <!-- Project blocks -->
       <div class="project">
         <h3>🌌 The Colour of Emptiness</h3>
         <p>Explores dimensional origin of darkness in space and dark‑energy photon absorption.</p>
@@ -198,19 +219,23 @@
         <p>Radical plasma‑like dimensional model of light, blending philosophy with testable formulations.</p>
         <a href="Hidden_Nature_of_Light (1).pdf" target="_blank">View PDF</a>
       </div>
+
     </section>
 
+    <!-- Vision -->
     <section id="vision">
       <h2>Vision Statement</h2>
       <p>I aim to bridge civil engineering with theoretical physics to redefine humanity’s future—on Earth and beyond. From space colonization to manipulating fundamental forces, my mission is to develop innovations that reshape technology and our understanding of reality.</p>
     </section>
 
+    <!-- Contact -->
     <section id="contact">
       <h2>📩 Contact</h2>
       <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
       <p>GitHub: <a href="https://github.com/drasura666" target="_blank">github.com/drasura666</a></p>
     </section>
 
+    <!-- License -->
     <section id="license">
       <h2>📜 License</h2>
       <p>This website and its content are licensed under the <strong>Creative Commons Attribution‑NonCommercial 4.0 International License</strong>. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">License details</a></p>
@@ -218,7 +243,7 @@
   </main>
 
   <footer>
-    <p>© 2025 Shreyansh Mishra. All Rights Reserved.</p>
+    <p>© 2025 Dr. Asura. All Rights Reserved.</p>
   </footer>
   <canvas id="plasmaCanvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999;"></canvas>
 
