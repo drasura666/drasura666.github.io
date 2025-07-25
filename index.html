@@ -145,23 +145,6 @@
   </style>
 </head>
 <body>
-  <h1 id="asura-name">Dr. Asura</h1>
-<audio id="thunder-sound" src="https://www.soundjay.com/nature/thunder-01.mp3"></audio>
-  <script>
-  const nameElement = document.getElementById("asura-name");
-  const thunderSound = document.getElementById("thunder-sound");
-
-  nameElement.addEventListener("click", () => {
-    thunderSound.currentTime = 0;
-    thunderSound.play();
-
-    nameElement.classList.add("flash");
-
-    setTimeout(() => {
-      nameElement.classList.remove("flash");
-    }, 200);
-  });
-  </script>
   <canvas id="helixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
   <header>
     <h1>Dr. Asura<span class="planet"></span></h1>
@@ -262,19 +245,19 @@
   <footer>
     <p>© 2025 Dr. Asura. All Rights Reserved.</p>
   </footer>
-  <canvas id="thunderCanvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999;"></canvas>
+  <canvas id="plasmaCanvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999;"></canvas>
+
 <script>
-const canvas = document.getElementById("thunderCanvas");
+const canvas = document.getElementById("plasmaCanvas");
 const ctx = canvas.getContext("2d");
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
-
 window.addEventListener("resize", () => {
   width = canvas.width = window.innerWidth;
   height = canvas.height = window.innerHeight;
 });
 
-function thunderStrike(x, y) {
+function burst(x, y) {
   const particles = [];
   for (let i = 0; i < 35; i++) {
     particles.push({
@@ -283,7 +266,7 @@ function thunderStrike(x, y) {
       angle: Math.random() * 2 * Math.PI,
       speed: Math.random() * 4 + 2,
       radius: Math.random() * 2 + 1,
-      color: `hsl(${200 + Math.random() * 60}, 100%, 75%)`, // Electric blue/purple
+      color: `hsl(${Math.random()*360}, 100%, 70%)`,
       life: 30 + Math.random() * 20
     });
   }
@@ -308,7 +291,7 @@ function thunderStrike(x, y) {
 }
 
 window.addEventListener("click", e => {
-  thunderStrike(e.clientX, e.clientY);
+  burst(e.clientX, e.clientY);
 });
 </script>
   <canvas id="atomHelixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3;"></canvas>
