@@ -245,19 +245,19 @@
   <footer>
     <p>© 2025 Dr. Asura. All Rights Reserved.</p>
   </footer>
-  <canvas id="plasmaCanvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999;"></canvas>
-
+  <canvas id="thunderCanvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999;"></canvas>
 <script>
-const canvas = document.getElementById("plasmaCanvas");
+const canvas = document.getElementById("thunderCanvas");
 const ctx = canvas.getContext("2d");
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
+
 window.addEventListener("resize", () => {
   width = canvas.width = window.innerWidth;
   height = canvas.height = window.innerHeight;
 });
 
-function burst(x, y) {
+function thunderStrike(x, y) {
   const particles = [];
   for (let i = 0; i < 35; i++) {
     particles.push({
@@ -266,7 +266,7 @@ function burst(x, y) {
       angle: Math.random() * 2 * Math.PI,
       speed: Math.random() * 4 + 2,
       radius: Math.random() * 2 + 1,
-      color: `hsl(${Math.random()*360}, 100%, 70%)`,
+      color: `hsl(${200 + Math.random() * 60}, 100%, 75%)`, // Electric blue/purple
       life: 30 + Math.random() * 20
     });
   }
@@ -291,7 +291,7 @@ function burst(x, y) {
 }
 
 window.addEventListener("click", e => {
-  burst(e.clientX, e.clientY);
+  thunderStrike(e.clientX, e.clientY);
 });
 </script>
   <canvas id="atomHelixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3;"></canvas>
