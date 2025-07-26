@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r148/three.min.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
   <title>Dr. Asura | Independent Researcher</title>
+  <meta name="description" content="Official research portfolio of Dr. Asura. Explore civil engineering, quantum physics, dark energy theories, and more.">
+<meta property="og:title" content="Dr. Asura | Independent Researcher">
+<meta property="og:description" content="Explore visionary projects bridging science, engineering, and technology.">
+<meta property="og:image" content="https://drasura666.github.io/thumbnail.jpg"> <!-- Replace with your image URL -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://drasura666.github.io">
   <!-- SEO / robots / sitemap integration -->
   <meta name="robots" content="index, follow">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
@@ -145,9 +150,10 @@
   </style>
 </head>
 <body>
+  <div id="atom-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -4;"></div>
   <canvas id="helixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
   <header>
-    <h1>Dr. Asura<span class="planet"></span></h1>
+    <h1>Dr. Asura<span class="planet" id="planet"></span></h1>
     <p>Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
   </header>
 
@@ -401,5 +407,21 @@ window.addEventListener("click", e => {
 
   animate();
   </script>
+  <script>
+// Open AsuraAI on planet click
+document.getElementById("planet").addEventListener("click", () => {
+  document.getElementById("asuraAI").style.display = "block";
+});
+
+// Close function
+function closeAsuraAI() {
+  document.getElementById("asuraAI").style.display = "none";
+}
+  </script>
+  <div id="asuraAI" style="display: none; position: fixed; bottom: 30px; right: 30px; background: #111; color: #00ffff; padding: 20px; border-radius: 15px; box-shadow: 0 0 20px #00ffc3; max-width: 300px; z-index: 9999;">
+  <h3 style="margin-top: 0;">🤖 AsuraAI</h3>
+  <p>Hello, I am AsuraAI. Ask me anything about Dr. Asura’s mind or missions.</p>
+  <button onclick="closeAsuraAI()" style="background: #00ffc3; border: none; padding: 6px 12px; border-radius: 8px; margin-top: 10px; color: #000;">Close</button>
+</div>
 </body>
 </html>
