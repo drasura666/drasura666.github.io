@@ -471,9 +471,17 @@ window.addEventListener("click", e => {
   animate();
   </script>
   <script>
-// Open AsuraAI on planet click
+// Toggle Asura AI Chat Box on planet click
 document.getElementById("planet").addEventListener("click", () => {
-  document.getElementById("asuraAI").style.display = "block";
+  const asuraBox = document.getElementById('asura-chat-box');
+  const asuraFrame = document.getElementById('asura-frame');
+
+  if (asuraBox.style.display === 'none' || asuraBox.style.display === '') {
+    asuraBox.style.display = 'block';
+    asuraFrame.src = "https://asuraai-chat.vercel.app";
+  } else {
+    asuraBox.style.display = 'none';
+  }
 });
 
 // Close function
@@ -516,5 +524,9 @@ function closeAsuraAI() {
     }, 1000);
   }
   </script>
+  <!-- Asura AI Chat Window -->
+<div id="asura-chat-box" style="position: fixed; bottom: 100px; right: 30px; width: 380px; height: 500px; display: none; z-index: 9999; box-shadow: 0 0 20px cyan; border-radius: 12px; overflow: hidden; background: #000;">
+  <iframe id="asura-frame" src="https://asuraai-chat.vercel.app" style="width: 100%; height: 100%; border: none;"></iframe>
+</div>
 </body>
 </html>
