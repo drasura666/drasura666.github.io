@@ -213,6 +213,11 @@
   </style>
 </head>
 <body>
+  <div id="asura-ai" style="position: relative; z-index: 10; color: white; padding: 1rem;">
+  <div id="asura-response" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 8px; padding: 1rem; max-width: 600px; margin: auto;">
+    <!-- Asura AI responses will be inserted here -->
+  </div>
+  </div>
   <div id="atom-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -4;"></div>
   <canvas id="helixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
   <header>
@@ -515,6 +520,17 @@ function closeAsuraAI() {
       chat.scrollTop = chat.scrollHeight;
     }, 1000);
   }
+  </script>
+  <script>
+  function showAsuraResponse(message) {
+    const container = document.getElementById("asura-response");
+    const p = document.createElement("p");
+    p.textContent = message;
+    container.appendChild(p);
+  }
+
+  // Example usage:
+  showAsuraResponse("👾 Welcome, I am Asura AI. Ask me anything.");
   </script>
 </body>
 </html>
