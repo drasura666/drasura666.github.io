@@ -13,8 +13,71 @@
 <meta property="og:url" content="https://drasura666.github.io">
   <!-- SEO / robots / sitemap integration -->
   <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+<style>
+  .asura-ai-chat {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 350px;
+    background: rgba(10, 10, 25, 0.95);
+    border: 2px solid #0ff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #0ff;
+    font-family: 'Orbitron', sans-serif;
+    z-index: 999;
+  }
 
+  .chat-header {
+    background: #111;
+    color: #0ff;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #0ff;
+  }
+
+  .chat-window {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    color: #fff;
+  }
+
+  .chat-window .message {
+    margin-bottom: 10px;
+  }
+
+  .chat-window .user { color: #6cf; }
+  .chat-window .bot { color: #0f0; }
+
+  .chat-input-container {
+    display: flex;
+    border-top: 1px solid #0ff;
+  }
+
+  #user-input {
+    flex: 1;
+    padding: 8px;
+    background: #222;
+    border: none;
+    color: #0ff;
+    font-size: 14px;
+  }
+
+  button {
+    background: #0ff;
+    color: #000;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #0cc;
+  }
+</style>
   <style>
     body {
       margin: 0;
@@ -423,5 +486,35 @@ function closeAsuraAI() {
   <p>Hello, I am AsuraAI. Ask me anything about Dr. Asura’s mind or missions.</p>
   <button onclick="closeAsuraAI()" style="background: #00ffc3; border: none; padding: 6px 12px; border-radius: 8px; margin-top: 10px; color: #000;">Close</button>
 </div>
+  <script>
+  function sendMessage() {
+    const input = document.getElementById("user-input");
+    const chat = document.getElementById("chat-window");
+
+    const userText = input.value.trim();
+    if (userText === "") return;
+
+    const userMsg = document.createElement("div");
+    userMsg.className = "message user";
+    userMsg.textContent = "🧍‍♂️ You: " + userText;
+    chat.appendChild(userMsg);
+
+    const botMsg = document.createElement("div");
+    botMsg.className = "message bot";
+    botMsg.textContent = "🤖 AsuraAI: Thinking...";
+
+    chat.appendChild(botMsg);
+    input.value = "";
+
+    // Scroll to bottom
+    chat.scrollTop = chat.scrollHeight;
+
+    setTimeout(() => {
+      // Simulated AI response (replace with actual logic/API)
+      botMsg.textContent = "🤖 AsuraAI: \"" + userText + "\" is now being processed in the quantum core.";
+      chat.scrollTop = chat.scrollHeight;
+    }, 1000);
+  }
+  </script>
 </body>
 </html>
