@@ -481,11 +481,14 @@ function closeAsuraAI() {
   document.getElementById("asuraAI").style.display = "none";
 }
   </script>
-  <div id="asuraAI" style="display: none; position: fixed; bottom: 30px; right: 30px; background: #111; color: #00ffff; padding: 20px; border-radius: 15px; box-shadow: 0 0 20px #00ffc3; max-width: 300px; z-index: 9999;">
-  <h3 style="margin-top: 0;">🤖 AsuraAI</h3>
-  <p>Hello, I am AsuraAI. Ask me anything about Dr. Asura’s mind or missions.</p>
-  <button onclick="closeAsuraAI()" style="background: #00ffc3; border: none; padding: 6px 12px; border-radius: 8px; margin-top: 10px; color: #000;">Close</button>
-</div>
+  <div id="asuraAI" class="asura-ai-chat" style="display: none;">
+  <div class="chat-header">🤖 AsuraAI</div>
+  <div id="chat-window" class="chat-window"></div>
+  <div class="chat-input-container">
+    <input id="user-input" type="text" placeholder="Ask something..." onkeydown="if(event.key==='Enter')sendMessage()" />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+  </div>
   <script>
   function sendMessage() {
     const input = document.getElementById("user-input");
