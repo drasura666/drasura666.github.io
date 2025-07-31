@@ -524,5 +524,40 @@ function closeAsuraAI() {
     }, 1000);
   }
   </script>
+  <script>
+  async function sendMessage() {
+    const input = document.getElementById('user-input').value;
+    const chatWindow = document.getElementById('chat-window');
+
+    if (!input.trim()) return;
+
+    const userMessage = document.createElement('div');
+    userMessage.className = 'user-message';
+    userMessage.innerText = 'You: ' + input;
+    chatWindow.appendChild(userMessage);
+
+    const aiMessage = document.createElement('div');
+    aiMessage.className = 'ai-message';
+    aiMessage.innerText = 'Asura-AI: Thinking...';
+    chatWindow.appendChild(aiMessage);
+
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+
+    try {
+      const res = await fetch("https://f3ad364c-5f32-4faf-8563-ff5c314f2540-00-2453a8jtq0pzc.worf.replit.dev/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input })
+      });
+
+      const data = await res.json();
+      aiMessage.innerText = 'Asura-AI: ' + (data.response || "No response.");
+    } catch (err) {
+      aiMessage.innerText = 'Asura-AI: Error talking to server.';
+    }
+
+    document.getElementById('user-input').value = '';
+  }
+  </script>
 </body>
 </html>
