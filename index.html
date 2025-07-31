@@ -495,34 +495,46 @@ function closeAsuraAI() {
   </div>
   </div>
   <script>
-  function sendMessage() {
-    const input = document.getElementById("user-input");
-    const chat = document.getElementById("chat-window");
+async function sendMessage() {
+  const input = document.getElementById("user-input");
+  const chat = document.getElementById("chat-window");
 
-    const userText = input.value.trim();
-    if (userText === "") return;
+  const userText = input.value.trim();
+  if (userText === "") return;
 
-    const userMsg = document.createElement("div");
-    userMsg.className = "message user";
-    userMsg.textContent = "🧍‍♂️ You: " + userText;
-    chat.appendChild(userMsg);
+  // Add user message
+  const userMsg = document.createElement("div");
+  userMsg.className = "message user";
+  userMsg.textContent = "🧍‍♂️ You: " + userText;
+  chat.appendChild(userMsg);
 
-    const botMsg = document.createElement("div");
-    botMsg.className = "message bot";
-    botMsg.textContent = "🤖 AsuraAI: Thinking...";
+  // Add loading bot message
+  const botMsg = document.createElement("div");
+  botMsg.className = "message bot";
+  botMsg.textContent = "🤖 AsuraAI: Thinking...";
+  chat.appendChild(botMsg);
 
-    chat.appendChild(botMsg);
-    input.value = "";
+  input.value = "";
+  chat.scrollTop = chat.scrollHeight;
 
-    // Scroll to bottom
-    chat.scrollTop = chat.scrollHeight;
+  try {
+    const response = await fetch("https://asura-ai.onrender.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userText }),
+    });
 
-    setTimeout(() => {
-      // Simulated AI response (replace with actual logic/API)
-      botMsg.textContent = "🤖 AsuraAI: \"" + userText + "\" is now being processed in the quantum core.";
-      chat.scrollTop = chat.scrollHeight;
-    }, 1000);
+    if (!response.ok) throw new Error("Failed to get response");
+
+    const data = await response.json();
+    botMsg.textContent = "🤖 AsuraAI: " + data.reply;
+  } catch (error) {
+    botMsg.textContent = "🤖 AsuraAI: Error connecting to the core.";
+    console.error(error);
   }
+
+  chat.scrollTop = chat.scrollHeight;
+}
   </script>
 </body>
 </html>
