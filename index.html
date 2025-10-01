@@ -1,223 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-3049278418225494">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-  <title>Dr. Asura | Independent Researcher</title>
-<meta name="description" content="Official research portfolio of Dr. Asura. Explore civil engineering, quantum physics, dark energy theories, and more.">
-<meta property="og:title" content="Dr. Asura | Independent Researcher">
-<meta property="og:description" content="Explore visionary projects bridging science, engineering, and technology.">
-<meta property="og:image" content="https://drasura666.github.io/thumbnail.jpg"> <!-- Replace with your image URL -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://drasura666.github.io">
-  <!-- SEO / robots / sitemap integration -->
+  <title>Dr. Asura | Quantum Nexus</title>
+  
+  <meta name="description" content="[ACCESS GRANTED] Enter the Quantum Nexus. Explore the independent research of Dr. Asura, bridging civil engineering with theoretical physics, cosmology, and beyond.">
+  <meta name="keywords" content="Dr. Asura, independent researcher, theoretical physics, civil engineering, quantum mechanics, cosmology, dark energy, futuristic technology">
+  <meta name="author" content="Dr. Asura">
   <meta name="robots" content="index, follow">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
-<style>
-  .asura-ai-chat {
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
-    width: 350px;
-    background: rgba(10, 10, 25, 0.95);
-    border: 2px solid #0ff;
-    border-radius: 12px;
-    box-shadow: 0 0 15px #0ff;
-    font-family: 'Orbitron', sans-serif;
-    z-index: 999;
-  }
+  <link rel="canonical" href="https://drasura666.github.io">
 
-  .chat-header {
-    background: #111;
-    color: #0ff;
-    padding: 10px;
-    font-weight: bold;
-    text-align: center;
-    border-bottom: 1px solid #0ff;
-  }
+  <meta property="og:title" content="Dr. Asura | Welcome to the Quantum Nexus">
+  <meta property="og:description" content="A mind is a universe of its own. Explore visionary projects that challenge the fabric of reality.">
+  <meta property="og:image" content="https://drasura666.github.io/thumbnail.jpg"> <meta property="og:type" content="website">
+  <meta property="og:url" content="https://drasura666.github.io">
+  <meta property="og:site_name" content="Dr. Asura's Research Nexus">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌀</text></svg>">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 
-  .chat-window {
-    max-height: 300px;
-    overflow-y: auto;
-    padding: 10px;
-    color: #fff;
-  }
-
-  .chat-window .message {
-    margin-bottom: 10px;
-  }
-
-  .chat-window .user { color: #6cf; }
-  .chat-window .bot { color: #0f0; }
-
-  .chat-input-container {
-    display: flex;
-    border-top: 1px solid #0ff;
-  }
-
-  #user-input {
-    flex: 1;
-    padding: 8px;
-    background: #222;
-    border: none;
-    color: #0ff;
-    font-size: 14px;
-  }
-
-  button {
-    background: #0ff;
-    color: #000;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background: #0cc;
-  }
-</style>
   <style>
+    /* CSS Variables for easy theme management */
+    :root {
+      --primary-color: #00ffc3;
+      --secondary-color: #00eaff;
+      --background-color: #000000;
+      --text-color: #e0f7fa;
+      --dark-glow: #0078a3;
+      --font-primary: 'Orbitron', sans-serif;
+      --font-secondary: 'Roboto Mono', monospace;
+    }
+
+    /* Preloader Styling */
+    #preloader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--background-color);
+      z-index: 10000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: var(--font-secondary);
+      color: var(--primary-color);
+      transition: opacity 0.8s ease-out;
+    }
+    #preloader-text {
+      margin-top: 20px;
+      letter-spacing: 2px;
+    }
+    .loader-bar {
+      width: 200px;
+      height: 3px;
+      background: #222;
+      border: 1px solid var(--primary-color);
+      margin-top: 15px;
+      padding: 2px;
+    }
+    #loader-progress {
+      width: 0%;
+      height: 100%;
+      background: var(--primary-color);
+      transition: width 0.1s ease;
+    }
+
+    /* General Body & Effects */
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 100%);
-      color: #e0f7fa;
+      font-family: var(--font-secondary);
+      background: var(--background-color);
+      color: var(--text-color);
       overflow-x: hidden;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2300ffc3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>'), auto;
     }
-    /* Starfield background */
-    body::before {
+    /* Scanline Overlay */
+    body::after {
       content: '';
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-      opacity: 0.35;
-      z-index: -1;
-      animation: starfield 100s linear infinite;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      background-size: 100% 3px, 5px 100%;
+      z-index: 999;
+      pointer-events: none;
+      animation: scanlines 10s linear infinite;
     }
-
-    @keyframes starfield {
-      0%   { background-position: 0 0; }
-      100% { background-position: 10000px 10000px; }
+    @keyframes scanlines { 
+      0% { background-position: 0 0; }
+      100% { background-position: 0 100%; }
     }
-
-    /* Header + neon effects */
-    @keyframes rotatePlanet {
-      0%   { transform: rotate(0deg) translateX(20px) rotate(0deg); }
-      100% { transform: rotate(360deg) translateX(20px) rotate(-360deg); }
-    }
-
+    
+    /* Header */
     header {
       padding: 2rem;
       text-align: center;
-      background: rgba(0,0,50,0.8);
-      box-shadow: 0 0 20px #00ffc3;
+      background: radial-gradient(ellipse at center, rgba(0,20,30,0.8) 0%, rgba(0,0,0,0) 80%);
+      border-bottom: 1px solid rgba(0, 255, 195, 0.3);
       position: relative;
     }
-
     header h1 {
+      font-family: var(--font-primary);
       margin: 0;
-      font-size: 2.5rem;
-      color: #00ffc3;
-      text-shadow: 0 0 8px #00fff2, 0 0 15px #00fff2, 0 0 25px #00ffc3;
-      display: inline-block;
-      position: relative;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      color: var(--primary-color);
+      text-shadow: 0 0 5px var(--primary-color), 0 0 15px var(--primary-color), 0 0 30px var(--primary-color);
+      animation: text-glitch 5s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    @keyframes text-glitch {
+      2%, 64% { transform: translate(2px, 0) skew(0deg); }
+      4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+      62% { transform: translate(0, 0) skew(5deg); }
+    }
+    header p {
+      font-size: 1rem;
+      color: var(--secondary-color);
+      letter-spacing: 1px;
     }
 
-    .planet {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #00fff2, #006666);
-      position: absolute;
-      right: -35px;
-      top: 50%;
-      transform: translateY(-50%);
-      box-shadow: 0 0 15px #00ffc3, 0 0 30px #00ffff;
-      animation: rotatePlanet 4s linear infinite;
-      transform-origin: -20px center;
-    }
-
+    /* Navigation */
     nav {
       text-align: center;
-      background: #111;
+      background: #050505;
       padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(5px);
+      border-bottom: 1px solid rgba(0, 255, 195, 0.2);
     }
-
     nav a {
-      margin: 0 1rem;
-      color: #00fff7;
+      margin: 0 1.5rem;
+      color: var(--secondary-color);
       text-decoration: none;
       font-weight: bold;
+      font-family: var(--font-primary);
+      transition: all 0.3s ease;
     }
-    nav a:hover { color: #ffffff; }
+    nav a:hover { 
+      color: #ffffff;
+      text-shadow: 0 0 8px var(--secondary-color);
+    }
 
+    /* Main Content */
     main {
       padding: 2rem;
       max-width: 1100px;
       margin: auto;
     }
-
     section {
-      margin-bottom: 3rem;
-      background: rgba(0,0,0,0.6);
-      padding: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 12px #0078a3;
+      margin-bottom: 4rem;
+      background: rgba(10, 20, 30, 0.5);
+      padding: 2rem;
+      border: 1px solid var(--dark-glow);
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 120, 163, 0.2), inset 0 0 10px rgba(0,0,0,0.5);
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s forwards;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    section:nth-of-type(2) { animation-delay: 0.2s; }
-    section:nth-of-type(3) { animation-delay: 0.4s; }
-    section:nth-of-type(4) { animation-delay: 0.6s; }
-
-    @keyframes fadeInUp {
-      to { opacity:1; transform: translateY(0); }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-
     h2 {
-      color: #00ffc3;
-      font-size: 1.6rem;
+      font-family: var(--font-primary);
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      border-bottom: 2px solid var(--primary-color);
+      display: inline-block;
+      padding-bottom: 5px;
+      margin-top: 0;
     }
-
+    
+    /* Project Cards */
+    #projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .project {
-      margin: 1rem 0;
-      padding: 1rem;
-      border: 1px solid #00e5ff;
-      border-radius: 1rem;
-      background: #00151f;
-      box-shadow: 0 0 8px #00eaff66;
+      margin: 0;
+      padding: 1.5rem;
+      border: 1px solid var(--secondary-color);
+      border-radius: 8px;
+      background: #001018;
+      box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
-
+    .project:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 0 25px rgba(0, 234, 255, 0.5);
+    }
+    .project h3 { margin-top: 0; font-family: var(--font-primary); }
+    .project p { flex-grow: 1; }
+    .project-links { margin-top: 1rem; }
     .project a {
-      color: #00eaff;
+      color: var(--secondary-color);
       text-decoration: none;
       font-weight: bold;
-      background: none;
-      border: none;
-      padding: 0.3rem;
+      margin-right: 1rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--secondary-color);
       border-radius: 5px;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
     }
-    .project a:hover { color: #ffffff; }
+    .project a:hover { 
+      background: var(--secondary-color);
+      color: #000;
+      box-shadow: 0 0 15px var(--secondary-color);
+    }
+    
+    /* Terminal Console */
+    #terminal {
+      position: fixed;
+      bottom: 10px; left: 10px;
+      width: 300px;
+      height: 150px;
+      background: rgba(0,0,0,0.8);
+      border: 1px solid #0f0;
+      border-radius: 4px;
+      padding: 8px;
+      font-family: var(--font-secondary);
+      font-size: 12px;
+      color: #0f0;
+      overflow-y: auto;
+      z-index: 998;
+    }
+    #terminal p { margin: 0; }
+    #terminal .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: #0f0;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* AI Chat Widget */
+    #ai-chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px; height: 60px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 20px var(--primary-color);
+      transition: transform 0.3s ease;
+    }
+    #ai-chat-toggle:hover { transform: scale(1.1); }
+    #ai-chat-toggle span { font-size: 2rem; } /* Icon */
+    
+    .asura-ai-chat {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      background: rgba(10, 10, 25, 0.95);
+      border: 2px solid var(--secondary-color);
+      border-radius: 12px;
+      box-shadow: 0 0 15px var(--secondary-color);
+      font-family: var(--font-primary);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0);
+      transform-origin: bottom right;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .asura-ai-chat.open { transform: scale(1); }
+
+    .chat-header {
+      background: #111;
+      color: var(--secondary-color);
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+      border-bottom: 1px solid var(--secondary-color);
+      cursor: move;
+    }
+    .chat-window { height: 300px; overflow-y: auto; padding: 10px; color: #fff; }
+    .chat-window .message { margin-bottom: 10px; line-height: 1.4; font-family: var(--font-secondary); }
+    .chat-window .user { color: #6cf; text-align: right; }
+    .chat-window .bot { color: #0f0; }
+    .chat-window .bot strong { color: var(--primary-color); }
+    .bot-typing { font-style: italic; color: #888; }
+    .chat-input-container { display: flex; border-top: 1px solid var(--secondary-color); }
+    #user-input {
+      flex: 1; padding: 8px; background: #222; border: none;
+      color: var(--secondary-color); font-size: 14px; font-family: var(--font-secondary);
+    }
+    button#send-btn {
+      background: var(--secondary-color); color: #000; border: none;
+      padding: 8px 12px; cursor: pointer;
+    }
+    button#send-btn:hover { background: #fff; }
 
     footer {
       text-align: center;
-      padding: 1rem;
-      background: #111;
+      padding: 2rem;
+      margin-top: 2rem;
+      background: #050505;
       color: #888;
+      border-top: 1px solid rgba(0, 255, 195, 0.2);
     }
   </style>
 </head>
 <body>
-  <div id="atom-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -4;"></div>
-  <canvas id="helixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;"></canvas>
+
+  <div id="preloader">
+    <h2>INITIALIZING NEXUS</h2>
+    <div class="loader-bar">
+      <div id="loader-progress"></div>
+    </div>
+    <p id="preloader-text">Loading Quantum Subroutines...</p>
+  </div>
+
+  <div id="three-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+  
   <header>
-    <h1>Dr. Asura<span class="planet" id="planet"></span></h1>
+    <h1>Dr. Asura</h1>
     <p>Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
   </header>
 
@@ -227,276 +339,314 @@
     <a href="#projects">Projects</a>
     <a href="#vision">Vision</a>
     <a href="#contact">Contact</a>
-    <a href="#license">License</a>
   </nav>
 
   <main>
-    <!-- About -->
     <section id="about">
       <h2>About Me</h2>
-      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space‑time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
+      <p>A dedicated and visionary Civil Engineering student with a profound passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space‑time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations. Reality is a canvas, and I intend to paint a masterpiece.</p>
     </section>
 
-    <!-- Skills -->
     <section id="skills">
       <h2>Technical & Soft Skills</h2>
-      <h3>Technical</h3>
-      <ul>
-        <li>RCC Design & Bar Bending Schedule</li>
-        <li>Surveying: Chain, Compass, Levelling</li>
-        <li>Concrete Tech: Mixing, Placing, Curing</li>
-        <li>Hydraulic Structures: Dams, Canals</li>
-        <li>Architectural Drawing: Plan, Section, Elevation</li>
-        <li>Environmental Consideration in Civil Design</li>
-        <li>On‑site Communication & Coordination</li>
-      </ul>
-      <h3>Soft Skills</h3>
-      <ul>
-        <li>Professional Communication</li>
-        <li>Leadership & Team Collaboration</li>
-        <li>Time Management</li>
-        <li>Site Discipline & Responsibility</li>
-      </ul>
-    </section>
+      <p>My skillset forms a bridge between the tangible world of civil engineering and the abstract realm of theoretical physics, allowing for a unique, multi-disciplinary approach to problem-solving.</p>
+      </section>
 
-    <!-- Projects -->
     <section id="projects">
       <h2>Research Projects & Hypotheses</h2>
-
-      <!-- Project blocks -->
       <div class="project">
-  <h3>🌀 Atomic Helical Model</h3>
-  <p>A novel atomic theory where the nucleus moves through 4D time, causing electrons to follow helical orbits—offering new insights into decay, entropy, and temporal drift.</p>
-  <a href="atomic-model/" target="_blank">Open Project</a>
-  <a href="atomic-model/Atomic%20Model.PDF" target="_blank">View PDF</a>
-</div>
-
-<div class="project">
-  <h3>🧪 A's Binder</h3>
-  <p>Composite road binder using plastic waste, silica, fly‑ash, fibers—designed for sustainability and extreme conditions.</p>
-  <a href="a_s_binder/" target="_blank">Open Project</a>
-  <a href="a_s_binder/A_s_Binder.pdf" target="_blank">View PDF</a>
-</div>
-
-<div class="project">
-  <h3>🌌 The Colour of Emptiness</h3>
-  <p>Explores dimensional origin of darkness in space and dark‑energy photon absorption.</p>
-  <a href="the_colour_of_emptiness/" target="_blank">Open Project</a>
-  <a href="the_colour_of_emptiness/The_Colour_of_Emptiness.pdf" target="_blank">View PDF</a>
-</div>
-
-<div class="project">
-  <h3>⚡ Stormcore Project</h3>
-  <p>A multi‑energy reactor concept using charged cloud systems and hydraulic pressure for steam, electricity, desalination.</p>
-  <a href="stormcore/" target="_blank">Open Project</a>
-  <a href="stormcore/STORMCORE.pdf" target="_blank">View PDF</a>
-</div>
-
-<div class="project">
-  <h3>🧲 MDMG Theory</h3>
-  <p>Magnetic fields + solar plasma → quantum vacuum disturbance, dark‑energy like particle production.</p>
-  <a href="mdmg_theory/" target="_blank">Open Project</a>
-  <a href="mdmg_theory/MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">View PDF</a>
-</div>
-
-<div class="project">
-  <h3>🔦 Hidden Nature of Light</h3>
-  <p>Radical plasma‑like dimensional model of light, blending philosophy with testable formulations.</p>
-  <a href="hidden_nature_of_light/" target="_blank">Open Project</a>
-  <a href="hidden_nature_of_light/Hidden_Nature_of_Light%20(1).pdf" target="_blank">View PDF</a>
-</div>
-      
+        <h3>🌀 Atomic Helical Model</h3>
+        <p>A novel atomic theory where the nucleus moves through a higher dimension, causing electrons to follow helical orbits—offering new insights into decay, entropy, and temporal drift.</p>
+        <div class="project-links">
+          <a href="atomic-model/" target="_blank">Explore</a>
+          <a href="atomic-model/Atomic%20Model.PDF" target="_blank">Read PDF</a>
+        </div>
+      </div>
+      <div class="project">
+        <h3>🧪 A's Binder</h3>
+        <p>A composite road binder using plastic waste, silica, and fly‑ash—designed for extreme durability, sustainability, and potential self-healing properties under thermal stress.</p>
+        <div class="project-links">
+          <a href="a_s_binder/" target="_blank">Explore</a>
+          <a href="a_s_binder/A_s_Binder.pdf" target="_blank">Read PDF</a>
+        </div>
+      </div>
+      <div class="project">
+        <h3>🌌 The Colour of Emptiness</h3>
+        <p>An exploration into the dimensional origin of darkness in space, proposing that dark energy facilitates photon absorption across dimensional membranes.</p>
+        <div class="project-links">
+          <a href="the_colour_of_emptiness/" target="_blank">Explore</a>
+          <a href="the_colour_of_emptiness/The_Colour_of_Emptiness.pdf" target="_blank">Read PDF</a>
+        </div>
+      </div>
+      <div class="project">
+        <h3>⚡ Stormcore Project</h3>
+        <p>A multi‑stage energy reactor concept harnessing charged cloud systems and hydraulic pressure for steam generation, electricity, and water desalination.</p>
+        <div class="project-links">
+          <a href="stormcore/" target="_blank">Explore</a>
+          <a href="stormcore/STORMCORE.pdf" target="_blank">Read PDF</a>
+        </div>
+      </div>
+      <div class="project">
+        <h3>🧲 MDMG Theory</h3>
+        <p>A hypothesis on Magnetic Dark Matter Generation, where intense magnetic fields interacting with solar plasma could disturb the quantum vacuum, producing exotic particles.</p>
+        <div class="project-links">
+          <a href="mdmg_theory/" target="_blank">Explore</a>
+          <a href="mdmg_theory/MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">Read PDF</a>
+        </div>
+      </div>
+      <div class="project">
+        <h3>🔦 Hidden Nature of Light</h3>
+        <p>A radical plasma-like dimensional model of light, blending philosophical inquiry with testable physical formulations to redefine our understanding of photons.</p>
+        <div class="project-links">
+          <a href="hidden_nature_of_light/" target="_blank">Explore</a>
+          <a href="hidden_nature_of_light/Hidden_Nature_of_Light%20(1).pdf" target="_blank">Read PDF</a>
+        </div>
+      </div>
     </section>
 
-    <!-- Vision -->
     <section id="vision">
       <h2>Vision Statement</h2>
       <p>I aim to bridge civil engineering with theoretical physics to redefine humanity’s future—on Earth and beyond. From space colonization to manipulating fundamental forces, my mission is to develop innovations that reshape technology and our understanding of reality.</p>
     </section>
 
-    <!-- Contact -->
     <section id="contact">
       <h2>📩 Contact</h2>
+      <p>For collaboration, inquiries, or discussion on the fabric of reality:</p>
       <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
       <p>GitHub: <a href="https://github.com/drasura666" target="_blank">github.com/drasura666</a></p>
     </section>
-    
-    <!-- License -->
-    <section id="license">
-      <h2>📜 License</h2>
-      <p>This website and its content are licensed under the <strong>Creative Commons Attribution‑NonCommercial 4.0 International License</strong>. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">License details</a></p>
-    </section>
   </main>
 
-  <p style="text-align:center; font-size:1.2em; margin-top:20px;">
-  🔑 Want to meet <strong>Dr Asura AI</strong>? <br/>
-  Look for the <span style="color:#6200ee; font-weight:bold;">spinning planet 🌍</span> and tap it to enter!
-  </p>
+  <div id="terminal"></div>
+  <button id="ai-chat-toggle" aria-label="Toggle Asura AI Chat"><span>🤖</span></button>
+  <div class="asura-ai-chat">
+    <div class="chat-header">Dr. Asura AI</div>
+    <div class="chat-window" id="chat-window"></div>
+    <div class="chat-input-container">
+      <input type="text" id="user-input" placeholder="Ask a question..." autocomplete="off">
+      <button id="send-btn" aria-label="Send Message">➤</button>
+    </div>
+  </div>
 
   <footer>
+    <p>Content licensed under CC BY-NC 4.0. Code is open source.</p>
     <p>© 2025 Dr. Asura. All Rights Reserved.</p>
   </footer>
-  <canvas id="plasmaCanvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 999;"></canvas>
 
 <script>
-const canvas = document.getElementById("plasmaCanvas");
-const ctx = canvas.getContext("2d");
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
-window.addEventListener("resize", () => {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-});
+document.addEventListener('DOMContentLoaded', () => {
 
-function burst(x, y) {
-  const particles = [];
-  for (let i = 0; i < 35; i++) {
-    particles.push({
-      x,
-      y,
-      angle: Math.random() * 2 * Math.PI,
-      speed: Math.random() * 4 + 2,
-      radius: Math.random() * 2 + 1,
-      color: `hsl(${Math.random()*360}, 100%, 70%)`,
-      life: 30 + Math.random() * 20
-    });
-  }
+  // --- Sound Effects ---
+  // Create an 'assets' folder and place these .mp3 files inside.
+  // You can find royalty-free sci-fi sounds on websites like Pixabay or Zapsplat.
+  const hoverSound = new Audio('assets/hover.mp3');
+  const clickSound = new Audio('assets/click.mp3');
+  const ambientSound = new Audio('assets:./ambience.mp3');
+  ambientSound.loop = true;
+  ambientSound.volume = 0.2;
 
-  let frame = 0;
-  function animate() {
-    frame++;
-    ctx.clearRect(0, 0, width, height);
-    particles.forEach(p => {
-      p.x += Math.cos(p.angle) * p.speed;
-      p.y += Math.sin(p.angle) * p.speed;
-      p.life -= 1;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
-      ctx.fill();
-    });
-    if (frame < 40) requestAnimationFrame(animate);
-  }
+  let hasInteracted = false;
+  document.body.addEventListener('click', () => {
+    if (!hasInteracted) {
+      ambientSound.play().catch(e => console.error("Audio autoplay failed:", e));
+      hasInteracted = true;
+    }
+  }, { once: true });
 
-  animate();
-}
-
-window.addEventListener("click", e => {
-  burst(e.clientX, e.clientY);
-});
-</script>
-  <canvas id="atomHelixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3;"></canvas>
-  <script>
-  const helixCanvas = document.getElementById("atomHelixCanvas");
-  const helixCtx = helixCanvas.getContext("2d");
-  helixCanvas.width = window.innerWidth;
-  helixCanvas.height = window.innerHeight;
-
-  window.addEventListener("resize", () => {
-    helixCanvas.width = window.innerWidth;
-    helixCanvas.height = window.innerHeight;
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => hoverSound.play().catch(e => {}));
+    el.addEventListener('click', () => clickSound.play().catch(e => {}));
   });
 
-  let nucleusZ = 0;
-  const electrons = [];
-  const electronCount = 6;
-  for (let i = 0; i < electronCount; i++) {
-    electrons.push({ angle: (i / electronCount) * Math.PI * 2 });
-  }
-
-  function drawHelixAtom() {
-    helixCtx.clearRect(0, 0, helixCanvas.width, helixCanvas.height);
-    const centerX = helixCanvas.width / 2;
-    const centerY = helixCanvas.height / 2;
-
-    for (let i = 0; i < 50; i++) {
-      let fade = 1 - i / 50;
-      helixCtx.beginPath();
-      helixCtx.arc(centerX, centerY + i * 3, 6, 0, Math.PI * 2);
-      helixCtx.fillStyle = `rgba(255, 255, 0, ${fade * 0.4})`;
-      helixCtx.fill();
+  // --- Preloader ---
+  const preloader = document.getElementById('preloader');
+  const preloaderText = document.getElementById('preloader-text');
+  const progress = document.getElementById('loader-progress');
+  const texts = ["Calibrating sensors...", "Compiling quantum data...", "Establishing secure connection...", "Nexus interface ready."];
+  let textIndex = 0;
+  
+  const interval = setInterval(() => {
+    let currentWidth = parseFloat(progress.style.width) || 0;
+    if (currentWidth < 100) {
+        progress.style.width = (currentWidth + 10) + '%';
     }
+    if (currentWidth % 20 === 0 && textIndex < texts.length) {
+        preloaderText.textContent = texts[textIndex++];
+    }
+    if(currentWidth >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            preloader.addEventListener('transitionend', () => preloader.style.display = 'none');
+            initTerminal(); // Start terminal after preloader
+        }, 500);
+    }
+  }, 200);
 
-    electrons.forEach(e => {
-      e.angle += 0.03;
-      let x = centerX + Math.cos(e.angle) * 50;
-      let y = centerY + Math.sin(e.angle) * 50;
-      let zOffset = Math.sin(e.angle * 2 + nucleusZ * 0.01) * 40;
-
-      helixCtx.beginPath();
-      helixCtx.arc(x, y + zOffset, 4, 0, Math.PI * 2);
-      helixCtx.fillStyle = "#00ffff";
-      helixCtx.shadowBlur = 5;
-      helixCtx.shadowColor = "#00ffff";
-      helixCtx.fill();
-      helixCtx.shadowBlur = 0;
-    });
-
-    helixCtx.beginPath();
-    helixCtx.arc(centerX, centerY, 8 + Math.sin(nucleusZ * 0.1) * 1.5, 0, Math.PI * 2);
-    helixCtx.fillStyle = "#ffff00";
-    helixCtx.shadowBlur = 15;
-    helixCtx.shadowColor = "#ffff00";
-    helixCtx.fill();
-    helixCtx.shadowBlur = 0;
-
-    nucleusZ++;
-    requestAnimationFrame(drawHelixAtom);
+  // --- Terminal Effect ---
+  const terminal = document.getElementById('terminal');
+  const terminalLines = [
+    "SYSTEM BOOT...",
+    "STATUS: NOMINAL",
+    "DR. ASURA NEXUS v2.5",
+    "--------------------",
+    "Awaiting user input...",
+    "> _"
+  ];
+  function initTerminal() {
+    let lineIndex = 0;
+    let charIndex = 0;
+    
+    function typeLine() {
+      if (lineIndex < terminalLines.length) {
+        const line = terminalLines[lineIndex];
+        if (charIndex < line.length) {
+          terminal.innerHTML = terminal.innerHTML.replace('<span class="cursor"></span>', '');
+          terminal.innerHTML += line.charAt(charIndex);
+          if (charIndex === line.length - 1) {
+            terminal.innerHTML += '<br>';
+            lineIndex++;
+            charIndex = 0;
+          } else {
+            charIndex++;
+          }
+          terminal.innerHTML += '<span class="cursor"></span>';
+          terminal.scrollTop = terminal.scrollHeight;
+          setTimeout(typeLine, Math.random() * 80 + 30);
+        }
+      }
+    }
+    typeLine();
   }
+  
+  // --- Intersection Observer for Section Animations ---
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  sections.forEach(section => observer.observe(section));
 
-  drawHelixAtom();
-  </script>
-  <script>
+  // --- Three.js Background ---
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  document.getElementById("atom-container").appendChild(renderer.domElement);
+  document.getElementById('three-bg').appendChild(renderer.domElement);
 
-  const nucleusGeometry = new THREE.SphereGeometry(0.4, 32, 32);
-  const nucleusMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-  const nucleus = new THREE.Mesh(nucleusGeometry, nucleusMaterial);
-  scene.add(nucleus);
-
-  const electronGroup = new THREE.Group();
-  scene.add(electronGroup);
-
-  const electrons = [];
-  const radius = 2;
-  const count = 5;
-
-  for (let i = 0; i < count; i++) {
-    const electronGeometry = new THREE.SphereGeometry(0.1, 16, 16);
-    const electronMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff });
-    const electron = new THREE.Mesh(electronGeometry, electronMaterial);
-    electronGroup.add(electron);
-    electrons.push({ mesh: electron, angle: (i * Math.PI * 2) / count });
+  const starCount = 5000;
+  const positions = new Float32Array(starCount * 3);
+  for (let i = 0; i < starCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 200;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 200;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 200;
   }
+  const starGeometry = new THREE.BufferGeometry();
+  starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const starMaterial = new THREE.PointsMaterial({
+    color: 0x00ffc3,
+    size: 0.1,
+    transparent: true,
+    opacity: 0.7
+  });
+  const stars = new THREE.Points(starGeometry, starMaterial);
+  scene.add(stars);
+  camera.position.z = 1;
 
-  camera.position.z = 5;
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (event) => {
+    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+  });
 
   function animate() {
     requestAnimationFrame(animate);
-    let time = Date.now() * 0.001;
-
-    for (let i = 0; i < electrons.length; i++) {
-      let e = electrons[i];
-      e.mesh.position.x = radius * Math.cos(time + e.angle);
-      e.mesh.position.y = radius * Math.sin(time + e.angle);
-      e.mesh.position.z = Math.sin((time + e.angle) * 2) * 1.5;
-    }
-
-    nucleus.scale.setScalar(1 + 0.05 * Math.sin(time * 3));
+    stars.rotation.y += 0.0002;
+    camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.02;
+    camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.02;
+    camera.lookAt(scene.position);
     renderer.render(scene, camera);
   }
-
   animate();
-  </script>
-  <script>
-  document.getElementById("planet").addEventListener("click", function () {
-    window.open("https://dr-asura-d1sc.onrender.com", "_blank");
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
   });
-  </script>
+  
+  // --- AI Chatbot ---
+  const chatWidget = document.querySelector('.asura-ai-chat');
+  const chatToggle = document.getElementById('ai-chat-toggle');
+  const chatWindow = document.getElementById('chat-window');
+  const userInput = document.getElementById('user-input');
+  const sendBtn = document.getElementById('send-btn');
+  
+  chatToggle.addEventListener('click', () => chatWidget.classList.toggle('open'));
+
+  const script = {
+    start: "Greetings. I am Dr. Asura's AI construct. I can answer some preliminary questions. What would you like to know? (e.g., 'Who is Dr. Asura?', 'What is his focus?', 'Are these theories real?')",
+    "who is dr. asura?": "Dr. Asura is the mind behind this research. A civil engineer by training, a physicist by passion. He believes the universe has secrets left to tell.",
+    "what is his focus?": "His focus is on unifying disparate fields. He seeks to apply the principles of cosmology to material science, and the logic of engineering to the mysteries of quantum mechanics.",
+    "are these theories real?": "They are hypotheses. Seeds of ideas. Some are grounded in current physics, others are speculative leaps. Reality, after all, is often stranger than fiction. Which project interests you most?",
+    "atomic helical model": "A fascinating thought experiment. It proposes time as a direction of motion for the nucleus, transforming electron orbitals into helices. This could explain phenomena like quantum tunneling and radioactive decay as 'slippage' along this temporal axis.",
+    "a's binder": "A practical application of his principles. It's not just about recycling waste, but about re-engineering it at a molecular level to create a material superior to its components. Resilience and sustainability are key.",
+    "dark energy": "He theorizes dark energy isn't an energy in the traditional sense, but a passive, dimensional 'tax' on light as it travels vast cosmic distances, causing the observed redshift and expansion.",
+    "contact": "You can reach Dr. Asura via the email and GitHub links in the 'Contact' section. He is always open to collaboration with fellow pioneers.",
+    default: "An interesting query. My primary function is to guide you through Dr. Asura's portfolio. Please refer to the projects section for specifics, or ask me about a particular theory."
+  };
+
+  function addMessage(sender, text) {
+    const message = document.createElement('div');
+    message.classList.add('message', sender);
+    message.innerHTML = text; // Using innerHTML to allow for <strong> tags etc.
+    chatWindow.appendChild(message);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
+  function handleUserInput() {
+    const text = userInput.value.trim().toLowerCase();
+    if (text === '') return;
+
+    addMessage('user', text);
+    userInput.value = '';
+
+    setTimeout(() => {
+        const typingIndicator = document.createElement('div');
+        typingIndicator.classList.add('message', 'bot-typing');
+        typingIndicator.textContent = 'Analyzing...';
+        chatWindow.appendChild(typingIndicator);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+
+        setTimeout(() => {
+            chatWindow.removeChild(typingIndicator);
+            let response = script.default;
+            for (const key in script) {
+                if (text.includes(key.replace(/[?]/g, ''))) {
+                    response = script[key];
+                    break;
+                }
+            }
+            addMessage('bot', response);
+        }, 1000 + Math.random() * 500);
+
+    }, 300);
+  }
+
+  sendBtn.addEventListener('click', handleUserInput);
+  userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleUserInput();
+  });
+
+  // Initial bot message
+  setTimeout(() => addMessage('bot', script.start), 1000);
+
+});
+</script>
 
 </body>
 </html>
