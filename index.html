@@ -3,330 +3,307 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dr. Asura | Quantum Nexus</title>
+  <title>Dr. Asura | Independent Researcher</title>
   
-  <meta name="description" content="[ACCESS GRANTED] Enter the Quantum Nexus. Explore the independent research of Dr. Asura, bridging civil engineering with theoretical physics, cosmology, and beyond.">
-  <meta name="keywords" content="Dr. Asura, independent researcher, theoretical physics, civil engineering, quantum mechanics, cosmology, dark energy, futuristic technology">
-  <meta name="author" content="Dr. Asura">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://drasura666.github.io">
-
-  <meta property="og:title" content="Dr. Asura | Welcome to the Quantum Nexus">
-  <meta property="og:description" content="A mind is a universe of its own. Explore visionary projects that challenge the fabric of reality.">
-  <meta property="og:image" content="https://drasura666.github.io/thumbnail.jpg"> <meta property="og:type" content="website">
+  <meta name="description" content="Official research portfolio of Dr. Asura. Explore civil engineering, quantum physics, dark energy theories, and more.">
+  <meta name="google-adsense-account" content="ca-pub-3049278418225494">
+  <meta property="og:title" content="Dr. Asura | Independent Researcher">
+  <meta property="og:description" content="Explore visionary projects bridging science, engineering, and technology.">
+  <meta property="og:image" content="https://drasura666.github.io/thumbnail.jpg">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="https://drasura666.github.io">
-  <meta property="og:site_name" content="Dr. Asura's Research Nexus">
+  <meta name="robots" content="index, follow">
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
   
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌀</text></svg>">
-  
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 
   <style>
-    /* CSS Variables for easy theme management */
+    /* --- CSS Variables for Easy Theme Management --- */
     :root {
       --primary-color: #00ffc3;
       --secondary-color: #00eaff;
       --background-color: #000000;
       --text-color: #e0f7fa;
-      --dark-glow: #0078a3;
-      --font-primary: 'Orbitron', sans-serif;
-      --font-secondary: 'Roboto Mono', monospace;
+      --text-light: #a7c4c8;
+      --font-heading: 'Orbitron', sans-serif;
+      --font-body: 'Roboto', sans-serif;
     }
 
-    /* Preloader Styling */
-    #preloader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: var(--background-color);
-      z-index: 10000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      font-family: var(--font-secondary);
-      color: var(--primary-color);
-      transition: opacity 0.8s ease-out;
-    }
-    #preloader-text {
-      margin-top: 20px;
-      letter-spacing: 2px;
-    }
-    .loader-bar {
-      width: 200px;
-      height: 3px;
-      background: #222;
-      border: 1px solid var(--primary-color);
-      margin-top: 15px;
-      padding: 2px;
-    }
-    #loader-progress {
-      width: 0%;
-      height: 100%;
-      background: var(--primary-color);
-      transition: width 0.1s ease;
+    /* --- General Body & Reset --- */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
 
-    /* General Body & Effects */
-    html {
-      scroll-behavior: smooth;
-    }
     body {
-      margin: 0;
-      font-family: var(--font-secondary);
-      background: var(--background-color);
+      font-family: var(--font-body);
+      background-color: var(--background-color);
       color: var(--text-color);
       overflow-x: hidden;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2300ffc3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>'), auto;
-    }
-    /* Scanline Overlay */
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-      background-size: 100% 3px, 5px 100%;
-      z-index: 999;
-      pointer-events: none;
-      animation: scanlines 10s linear infinite;
-    }
-    @keyframes scanlines { 
-      0% { background-position: 0 0; }
-      100% { background-position: 0 100%; }
-    }
-    
-    /* Header */
-    header {
-      padding: 2rem;
-      text-align: center;
-      background: radial-gradient(ellipse at center, rgba(0,20,30,0.8) 0%, rgba(0,0,0,0) 80%);
-      border-bottom: 1px solid rgba(0, 255, 195, 0.3);
-      position: relative;
-    }
-    header h1 {
-      font-family: var(--font-primary);
-      margin: 0;
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      color: var(--primary-color);
-      text-shadow: 0 0 5px var(--primary-color), 0 0 15px var(--primary-color), 0 0 30px var(--primary-color);
-      animation: text-glitch 5s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    @keyframes text-glitch {
-      2%, 64% { transform: translate(2px, 0) skew(0deg); }
-      4%, 60% { transform: translate(-2px, 0) skew(0deg); }
-      62% { transform: translate(0, 0) skew(5deg); }
-    }
-    header p {
-      font-size: 1rem;
-      color: var(--secondary-color);
-      letter-spacing: 1px;
     }
 
-    /* Navigation */
-    nav {
+    /* --- Unified THREE.js Canvas for Background --- */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    /* --- Header & Navigation --- */
+    header {
       text-align: center;
-      background: #050505;
-      padding: 1rem;
+      padding: 3rem 1rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      color: var(--primary-color);
+      text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    header p {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        margin-top: 0.5rem;
+    }
+
+    nav {
       position: sticky;
       top: 0;
-      z-index: 100;
-      backdrop-filter: blur(5px);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1rem;
+      text-align: center;
+      z-index: 1000;
       border-bottom: 1px solid rgba(0, 255, 195, 0.2);
     }
+
     nav a {
       margin: 0 1.5rem;
       color: var(--secondary-color);
       text-decoration: none;
       font-weight: bold;
-      font-family: var(--font-primary);
-      transition: all 0.3s ease;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
-    nav a:hover { 
+    nav a:hover {
       color: #ffffff;
-      text-shadow: 0 0 8px var(--secondary-color);
+      text-shadow: 0 0 8px #ffffff;
     }
 
-    /* Main Content */
+    /* --- Main Content & Sections (Glassmorphism UI) --- */
     main {
-      padding: 2rem;
+      padding: 2rem 1rem;
       max-width: 1100px;
       margin: auto;
     }
+
     section {
-      margin-bottom: 4rem;
-      background: rgba(10, 20, 30, 0.5);
+      margin-bottom: 3rem;
+      background: rgba(10, 25, 47, 0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 2rem;
-      border: 1px solid var(--dark-glow);
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0, 120, 163, 0.2), inset 0 0 10px rgba(0,0,0,0.5);
+      border-radius: 1rem;
+      border: 1px solid rgba(0, 255, 195, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards ease-out;
     }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
+    section:nth-of-type(2) { animation-delay: 0.1s; }
+    section:nth-of-type(3) { animation-delay: 0.2s; }
+    section:nth-of-type(4) { animation-delay: 0.3s; }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
     }
+
     h2 {
-      font-family: var(--font-primary);
+      font-family: var(--font-heading);
       color: var(--primary-color);
       font-size: 1.8rem;
-      border-bottom: 2px solid var(--primary-color);
-      display: inline-block;
-      padding-bottom: 5px;
-      margin-top: 0;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--primary-color);
+      padding-bottom: 0.5rem;
     }
     
-    /* Project Cards */
-    #projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .project {
-      margin: 0;
-      padding: 1.5rem;
-      border: 1px solid var(--secondary-color);
-      border-radius: 8px;
-      background: #001018;
-      box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .project:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 0 25px rgba(0, 234, 255, 0.5);
-    }
-    .project h3 { margin-top: 0; font-family: var(--font-primary); }
-    .project p { flex-grow: 1; }
-    .project-links { margin-top: 1rem; }
-    .project a {
-      color: var(--secondary-color);
-      text-decoration: none;
-      font-weight: bold;
-      margin-right: 1rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--secondary-color);
-      border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-    .project a:hover { 
-      background: var(--secondary-color);
-      color: #000;
-      box-shadow: 0 0 15px var(--secondary-color);
+    p, ul {
+        line-height: 1.7;
+        color: var(--text-light);
     }
     
-    /* Terminal Console */
-    #terminal {
-      position: fixed;
-      bottom: 10px; left: 10px;
-      width: 300px;
-      height: 150px;
-      background: rgba(0,0,0,0.8);
-      border: 1px solid #0f0;
-      border-radius: 4px;
-      padding: 8px;
-      font-family: var(--font-secondary);
-      font-size: 12px;
-      color: #0f0;
-      overflow-y: auto;
-      z-index: 998;
+    ul {
+        list-style-position: inside;
+        padding-left: 1rem;
     }
-    #terminal p { margin: 0; }
-    #terminal .cursor {
-      display: inline-block;
-      width: 8px;
-      height: 14px;
-      background: #0f0;
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes blink { 50% { opacity: 0; } }
 
-    /* AI Chat Widget */
-    #ai-chat-toggle {
+    a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    a:hover {
+        color: #ffffff;
+    }
+
+    /* --- Enhanced Project Grid --- */
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .project-card {
+        padding: 1.5rem;
+        border: 1px solid rgba(0, 234, 255, 0.3);
+        border-radius: 1rem;
+        background: rgba(0, 21, 31, 0.7);
+        box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 25px rgba(0, 234, 255, 0.3);
+    }
+    
+    .project-card h3 {
+        font-family: var(--font-heading);
+        color: var(--text-color);
+        margin-bottom: 0.75rem;
+    }
+    
+    .project-card p {
+        flex-grow: 1;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .project-links a {
+        margin-right: 1rem;
+        font-weight: bold;
+        padding: 0.4rem 0.8rem;
+        border-radius: 5px;
+        background: rgba(0, 234, 255, 0.1);
+        border: 1px solid rgba(0, 234, 255, 0.5);
+    }
+    .project-links a:hover {
+        background: rgba(0, 234, 255, 0.3);
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #050505;
+      color: #888;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* --- AI Chat Widget (Ready for JS) --- */
+    .ai-chat-toggle {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 60px; height: 60px;
+      width: 60px;
+      height: 60px;
       background: var(--primary-color);
+      color: #000;
       border-radius: 50%;
       border: none;
+      font-size: 1.8rem;
       cursor: pointer;
-      z-index: 1001;
       display: flex;
       justify-content: center;
       align-items: center;
       box-shadow: 0 0 20px var(--primary-color);
+      z-index: 1001;
       transition: transform 0.3s ease;
     }
-    #ai-chat-toggle:hover { transform: scale(1.1); }
-    #ai-chat-toggle span { font-size: 2rem; } /* Icon */
-    
+    .ai-chat-toggle:hover {
+        transform: scale(1.1);
+    }
+
     .asura-ai-chat {
       position: fixed;
       bottom: 90px;
       right: 20px;
       width: 350px;
-      background: rgba(10, 10, 25, 0.95);
-      border: 2px solid var(--secondary-color);
+      background: rgba(10, 25, 47, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--primary-color);
       border-radius: 12px;
-      box-shadow: 0 0 15px var(--secondary-color);
-      font-family: var(--font-primary);
+      box-shadow: 0 0 25px rgba(0, 255, 195, 0.5);
+      font-family: var(--font-heading);
       z-index: 1000;
-      display: flex;
+      display: none; /* Toggle with JS */
       flex-direction: column;
-      transform: scale(0);
-      transform-origin: bottom right;
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .asura-ai-chat.open { transform: scale(1); }
 
     .chat-header {
-      background: #111;
-      color: var(--secondary-color);
+      background: rgba(0, 0, 0, 0.5);
+      color: var(--primary-color);
       padding: 10px;
       font-weight: bold;
       text-align: center;
-      border-bottom: 1px solid var(--secondary-color);
-      cursor: move;
+      border-bottom: 1px solid var(--primary-color);
     }
-    .chat-window { height: 300px; overflow-y: auto; padding: 10px; color: #fff; }
-    .chat-window .message { margin-bottom: 10px; line-height: 1.4; font-family: var(--font-secondary); }
-    .chat-window .user { color: #6cf; text-align: right; }
-    .chat-window .bot { color: #0f0; }
-    .chat-window .bot strong { color: var(--primary-color); }
-    .bot-typing { font-style: italic; color: #888; }
-    .chat-input-container { display: flex; border-top: 1px solid var(--secondary-color); }
-    #user-input {
-      flex: 1; padding: 8px; background: #222; border: none;
-      color: var(--secondary-color); font-size: 14px; font-family: var(--font-secondary);
-    }
-    button#send-btn {
-      background: var(--secondary-color); color: #000; border: none;
-      padding: 8px 12px; cursor: pointer;
-    }
-    button#send-btn:hover { background: #fff; }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      margin-top: 2rem;
-      background: #050505;
-      color: #888;
-      border-top: 1px solid rgba(0, 255, 195, 0.2);
+    .chat-window {
+      height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+      color: #fff;
+      font-family: var(--font-body);
+    }
+    
+    .chat-input-container {
+      display: flex;
+      border-top: 1px solid var(--primary-color);
+    }
+
+    #user-input {
+      flex: 1;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      color: var(--secondary-color);
+      font-size: 14px;
+    }
+    #user-input:focus {
+        outline: none;
+    }
+
+    #send-btn {
+      background: var(--primary-color);
+      color: #000;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <div id="preloader">
-    <h2>INITIALIZING NEXUS</h2>
-    <div class="loader-bar">
-      <div id="loader-progress"></div>
-    </div>
-    <p id="preloader-text">Loading Quantum Subroutines...</p>
-  </div>
-
-  <div id="three-bg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+  <div id="bg-canvas"></div>
   
   <header>
     <h1>Dr. Asura</h1>
@@ -344,64 +321,88 @@
   <main>
     <section id="about">
       <h2>About Me</h2>
-      <p>A dedicated and visionary Civil Engineering student with a profound passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space‑time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations. Reality is a canvas, and I intend to paint a masterpiece.</p>
+      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space‑time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
     </section>
 
     <section id="skills">
       <h2>Technical & Soft Skills</h2>
-      <p>My skillset forms a bridge between the tangible world of civil engineering and the abstract realm of theoretical physics, allowing for a unique, multi-disciplinary approach to problem-solving.</p>
-      </section>
+      <h3>Technical</h3>
+      <ul>
+        <li>RCC Design & Bar Bending Schedule</li>
+        <li>Surveying: Chain, Compass, Levelling</li>
+        <li>Concrete Tech: Mixing, Placing, Curing</li>
+        <li>Hydraulic Structures: Dams, Canals</li>
+        <li>Architectural Drawing: Plan, Section, Elevation</li>
+        <li>Environmental Consideration in Civil Design</li>
+        <li>On‑site Communication & Coordination</li>
+      </ul>
+      <h3>Soft Skills</h3>
+      <ul>
+        <li>Professional Communication</li>
+        <li>Leadership & Team Collaboration</li>
+        <li>Time Management</li>
+        <li>Site Discipline & Responsibility</li>
+      </ul>
+    </section>
 
     <section id="projects">
       <h2>Research Projects & Hypotheses</h2>
-      <div class="project">
-        <h3>🌀 Atomic Helical Model</h3>
-        <p>A novel atomic theory where the nucleus moves through a higher dimension, causing electrons to follow helical orbits—offering new insights into decay, entropy, and temporal drift.</p>
-        <div class="project-links">
-          <a href="atomic-model/" target="_blank">Explore</a>
-          <a href="atomic-model/Atomic%20Model.PDF" target="_blank">Read PDF</a>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>🌀 Atomic Helical Model</h3>
+          <p>A novel atomic theory where the nucleus moves through 4D time, causing electrons to follow helical orbits—offering new insights into decay, entropy, and temporal drift.</p>
+          <div class="project-links">
+            <a href="atomic-model/" target="_blank">Open Project</a>
+            <a href="atomic-model/Atomic%20Model.PDF" target="_blank">View PDF</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>🧪 A's Binder</h3>
+          <p>Composite road binder using plastic waste, silica, fly‑ash, fibers—designed for sustainability and extreme conditions.</p>
+          <div class="project-links">
+            <a href="a_s_binder/" target="_blank">Open Project</a>
+            <a href="a_s_binder/A_s_Binder.pdf" target="_blank">View PDF</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>🌌 The Colour of Emptiness</h3>
+          <p>Explores dimensional origin of darkness in space and dark‑energy photon absorption.</p>
+          <div class="project-links">
+            <a href="the_colour_of_emptiness/" target="_blank">Open Project</a>
+            <a href="the_colour_of_emptiness/The_Colour_of_Emptiness.pdf" target="_blank">View PDF</a>
+          </div>
+        </div>
+        <div class="project-card">
+            <h3>⚡ Stormcore Project</h3>
+            <p>A multi‑energy reactor concept using charged cloud systems and hydraulic pressure for steam, electricity, desalination.</p>
+            <div class="project-links">
+                <a href="stormcore/" target="_blank">Open Project</a>
+                <a href="stormcore/STORMCORE.pdf" target="_blank">View PDF</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <h3>🧲 MDMG Theory</h3>
+            <p>Magnetic fields + solar plasma → quantum vacuum disturbance, dark‑energy like particle production.</p>
+            <div class="project-links">
+                <a href="mdmg_theory/" target="_blank">Open Project</a>
+                <a href="mdmg_theory/MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">View PDF</a>
+            </div>
+        </div>
+        <div class="project-card">
+            <h3>🔦 Hidden Nature of Light</h3>
+            <p>Radical plasma‑like dimensional model of light, blending philosophy with testable formulations.</p>
+            <div class="project-links">
+                <a href="hidden_nature_of_light/" target="_blank">Open Project</a>
+                <a href="hidden_nature_of_light/Hidden_Nature_of_Light%20(1).pdf" target="_blank">View PDF</a>
+            </div>
         </div>
       </div>
-      <div class="project">
-        <h3>🧪 A's Binder</h3>
-        <p>A composite road binder using plastic waste, silica, and fly‑ash—designed for extreme durability, sustainability, and potential self-healing properties under thermal stress.</p>
-        <div class="project-links">
-          <a href="a_s_binder/" target="_blank">Explore</a>
-          <a href="a_s_binder/A_s_Binder.pdf" target="_blank">Read PDF</a>
-        </div>
-      </div>
-      <div class="project">
-        <h3>🌌 The Colour of Emptiness</h3>
-        <p>An exploration into the dimensional origin of darkness in space, proposing that dark energy facilitates photon absorption across dimensional membranes.</p>
-        <div class="project-links">
-          <a href="the_colour_of_emptiness/" target="_blank">Explore</a>
-          <a href="the_colour_of_emptiness/The_Colour_of_Emptiness.pdf" target="_blank">Read PDF</a>
-        </div>
-      </div>
-      <div class="project">
-        <h3>⚡ Stormcore Project</h3>
-        <p>A multi‑stage energy reactor concept harnessing charged cloud systems and hydraulic pressure for steam generation, electricity, and water desalination.</p>
-        <div class="project-links">
-          <a href="stormcore/" target="_blank">Explore</a>
-          <a href="stormcore/STORMCORE.pdf" target="_blank">Read PDF</a>
-        </div>
-      </div>
-      <div class="project">
-        <h3>🧲 MDMG Theory</h3>
-        <p>A hypothesis on Magnetic Dark Matter Generation, where intense magnetic fields interacting with solar plasma could disturb the quantum vacuum, producing exotic particles.</p>
-        <div class="project-links">
-          <a href="mdmg_theory/" target="_blank">Explore</a>
-          <a href="mdmg_theory/MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">Read PDF</a>
-        </div>
-      </div>
-      <div class="project">
-        <h3>🔦 Hidden Nature of Light</h3>
-        <p>A radical plasma-like dimensional model of light, blending philosophical inquiry with testable physical formulations to redefine our understanding of photons.</p>
-        <div class="project-links">
-          <a href="hidden_nature_of_light/" target="_blank">Explore</a>
-          <a href="hidden_nature_of_light/Hidden_Nature_of_Light%20(1).pdf" target="_blank">Read PDF</a>
-        </div>
-      </div>
+    </section>
+    
+    <section id="ai-link">
+        <h2>Meet Dr. Asura AI</h2>
+        <p>Explore my research and theories with my custom AI assistant. Built on a powerful Large Language Model, it can discuss my projects, explain complex concepts, and brainstorm new ideas. Tap the link below to enter the simulation.</p>
+        <a href="https://dr-asura-d1sc.onrender.com" target="_blank" style="font-weight:bold; font-family: var(--font-heading); font-size: 1.2rem;">Launch AI Interface <i class="fa-solid fa-arrow-right"></i></a>
     </section>
 
     <section id="vision">
@@ -410,242 +411,105 @@
     </section>
 
     <section id="contact">
-      <h2>📩 Contact</h2>
-      <p>For collaboration, inquiries, or discussion on the fabric of reality:</p>
+      <h2><i class="fa-solid fa-envelope"></i> Contact</h2>
       <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
       <p>GitHub: <a href="https://github.com/drasura666" target="_blank">github.com/drasura666</a></p>
     </section>
+    
+    <section id="license">
+      <h2><i class="fa-solid fa-certificate"></i> License</h2>
+      <p>This website and its content are licensed under the <strong>Creative Commons Attribution‑NonCommercial 4.0 International License</strong>. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">License details</a></p>
+    </section>
   </main>
-
-  <div id="terminal"></div>
-  <button id="ai-chat-toggle" aria-label="Toggle Asura AI Chat"><span>🤖</span></button>
-  <div class="asura-ai-chat">
+  
+  <button class="ai-chat-toggle" id="ai-chat-toggle" aria-label="Toggle AI Chat"><i class="fa-solid fa-robot"></i></button>
+  <div class="asura-ai-chat" id="ai-chat-widget">
     <div class="chat-header">Dr. Asura AI</div>
-    <div class="chat-window" id="chat-window"></div>
+    <div class="chat-window">
+      <div class="message bot">Welcome! Ask me about my research.</div>
+    </div>
     <div class="chat-input-container">
-      <input type="text" id="user-input" placeholder="Ask a question..." autocomplete="off">
-      <button id="send-btn" aria-label="Send Message">➤</button>
+      <input type="text" id="user-input" placeholder="Type your message...">
+      <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
     </div>
   </div>
 
   <footer>
-    <p>Content licensed under CC BY-NC 4.0. Code is open source.</p>
     <p>© 2025 Dr. Asura. All Rights Reserved.</p>
   </footer>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-
-  // --- Sound Effects ---
-  // Create an 'assets' folder and place these .mp3 files inside.
-  // You can find royalty-free sci-fi sounds on websites like Pixabay or Zapsplat.
-  const hoverSound = new Audio('assets/hover.mp3');
-  const clickSound = new Audio('assets/click.mp3');
-  const ambientSound = new Audio('assets:./ambience.mp3');
-  ambientSound.loop = true;
-  ambientSound.volume = 0.2;
-
-  let hasInteracted = false;
-  document.body.addEventListener('click', () => {
-    if (!hasInteracted) {
-      ambientSound.play().catch(e => console.error("Audio autoplay failed:", e));
-      hasInteracted = true;
-    }
-  }, { once: true });
-
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => hoverSound.play().catch(e => {}));
-    el.addEventListener('click', () => clickSound.play().catch(e => {}));
-  });
-
-  // --- Preloader ---
-  const preloader = document.getElementById('preloader');
-  const preloaderText = document.getElementById('preloader-text');
-  const progress = document.getElementById('loader-progress');
-  const texts = ["Calibrating sensors...", "Compiling quantum data...", "Establishing secure connection...", "Nexus interface ready."];
-  let textIndex = 0;
-  
-  const interval = setInterval(() => {
-    let currentWidth = parseFloat(progress.style.width) || 0;
-    if (currentWidth < 100) {
-        progress.style.width = (currentWidth + 10) + '%';
-    }
-    if (currentWidth % 20 === 0 && textIndex < texts.length) {
-        preloaderText.textContent = texts[textIndex++];
-    }
-    if(currentWidth >= 100) {
-        clearInterval(interval);
-        setTimeout(() => {
-            preloader.style.opacity = '0';
-            preloader.addEventListener('transitionend', () => preloader.style.display = 'none');
-            initTerminal(); // Start terminal after preloader
-        }, 500);
-    }
-  }, 200);
-
-  // --- Terminal Effect ---
-  const terminal = document.getElementById('terminal');
-  const terminalLines = [
-    "SYSTEM BOOT...",
-    "STATUS: NOMINAL",
-    "DR. ASURA NEXUS v2.5",
-    "--------------------",
-    "Awaiting user input...",
-    "> _"
-  ];
-  function initTerminal() {
-    let lineIndex = 0;
-    let charIndex = 0;
-    
-    function typeLine() {
-      if (lineIndex < terminalLines.length) {
-        const line = terminalLines[lineIndex];
-        if (charIndex < line.length) {
-          terminal.innerHTML = terminal.innerHTML.replace('<span class="cursor"></span>', '');
-          terminal.innerHTML += line.charAt(charIndex);
-          if (charIndex === line.length - 1) {
-            terminal.innerHTML += '<br>';
-            lineIndex++;
-            charIndex = 0;
-          } else {
-            charIndex++;
-          }
-          terminal.innerHTML += '<span class="cursor"></span>';
-          terminal.scrollTop = terminal.scrollHeight;
-          setTimeout(typeLine, Math.random() * 80 + 30);
-        }
-      }
-    }
-    typeLine();
-  }
-  
-  // --- Intersection Observer for Section Animations ---
-  const sections = document.querySelectorAll('section');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  sections.forEach(section => observer.observe(section));
-
-  // --- Three.js Background ---
+  // --- Unified THREE.js Background Animation ---
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 5;
+
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  document.getElementById('three-bg').appendChild(renderer.domElement);
+  document.getElementById("bg-canvas").appendChild(renderer.domElement);
 
-  const starCount = 5000;
-  const positions = new Float32Array(starCount * 3);
-  for (let i = 0; i < starCount; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 200;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 200;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 200;
+  // Starfield
+  const starsGeometry = new THREE.BufferGeometry();
+  const starsCount = 5000;
+  const posArray = new Float32Array(starsCount * 3);
+
+  for (let i = 0; i < starsCount * 3; i++) {
+    posArray[i] = (Math.random() - 0.5) * 100;
   }
-  const starGeometry = new THREE.BufferGeometry();
-  starGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  const starMaterial = new THREE.PointsMaterial({
-    color: 0x00ffc3,
-    size: 0.1,
-    transparent: true,
-    opacity: 0.7
-  });
-  const stars = new THREE.Points(starGeometry, starMaterial);
-  scene.add(stars);
-  camera.position.z = 1;
+  starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
-  let mouseX = 0, mouseY = 0;
-  document.addEventListener('mousemove', (event) => {
-    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+  const starsMaterial = new THREE.PointsMaterial({
+    size: 0.015,
+    color: 0x00ffc3
   });
+  const starField = new THREE.Points(starsGeometry, starsMaterial);
+  scene.add(starField);
+  
+  // Central Glowing Energy Core
+  const coreGeometry = new THREE.TorusKnotGeometry(0.8, 0.2, 100, 16);
+  const coreMaterial = new THREE.MeshStandardMaterial({
+      color: 0x00eaff,
+      emissive: 0x00eaff,
+      emissiveIntensity: 2,
+      metalness: 0.8,
+      roughness: 0.2
+  });
+  const energyCore = new THREE.Mesh(coreGeometry, coreMaterial);
+  scene.add(energyCore);
 
+  const pointLight = new THREE.PointLight(0x00ffc3, 10, 100);
+  pointLight.position.set(0, 0, 3);
+  scene.add(pointLight);
+
+  // Animation Loop
+  const clock = new THREE.Clock();
   function animate() {
-    requestAnimationFrame(animate);
-    stars.rotation.y += 0.0002;
-    camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.02;
-    camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.02;
-    camera.lookAt(scene.position);
+    const elapsedTime = clock.getElapsedTime();
+    
+    starField.rotation.y = elapsedTime * 0.05;
+    energyCore.rotation.x = elapsedTime * 0.1;
+    energyCore.rotation.y = elapsedTime * 0.2;
+
     renderer.render(scene, camera);
+    requestAnimationFrame(animate);
   }
   animate();
 
+  // Handle Window Resize
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
   
-  // --- AI Chatbot ---
-  const chatWidget = document.querySelector('.asura-ai-chat');
+  // --- AI Chat Toggle Logic ---
   const chatToggle = document.getElementById('ai-chat-toggle');
-  const chatWindow = document.getElementById('chat-window');
-  const userInput = document.getElementById('user-input');
-  const sendBtn = document.getElementById('send-btn');
+  const chatWidget = document.getElementById('ai-chat-widget');
   
-  chatToggle.addEventListener('click', () => chatWidget.classList.toggle('open'));
-
-  const script = {
-    start: "Greetings. I am Dr. Asura's AI construct. I can answer some preliminary questions. What would you like to know? (e.g., 'Who is Dr. Asura?', 'What is his focus?', 'Are these theories real?')",
-    "who is dr. asura?": "Dr. Asura is the mind behind this research. A civil engineer by training, a physicist by passion. He believes the universe has secrets left to tell.",
-    "what is his focus?": "His focus is on unifying disparate fields. He seeks to apply the principles of cosmology to material science, and the logic of engineering to the mysteries of quantum mechanics.",
-    "are these theories real?": "They are hypotheses. Seeds of ideas. Some are grounded in current physics, others are speculative leaps. Reality, after all, is often stranger than fiction. Which project interests you most?",
-    "atomic helical model": "A fascinating thought experiment. It proposes time as a direction of motion for the nucleus, transforming electron orbitals into helices. This could explain phenomena like quantum tunneling and radioactive decay as 'slippage' along this temporal axis.",
-    "a's binder": "A practical application of his principles. It's not just about recycling waste, but about re-engineering it at a molecular level to create a material superior to its components. Resilience and sustainability are key.",
-    "dark energy": "He theorizes dark energy isn't an energy in the traditional sense, but a passive, dimensional 'tax' on light as it travels vast cosmic distances, causing the observed redshift and expansion.",
-    "contact": "You can reach Dr. Asura via the email and GitHub links in the 'Contact' section. He is always open to collaboration with fellow pioneers.",
-    default: "An interesting query. My primary function is to guide you through Dr. Asura's portfolio. Please refer to the projects section for specifics, or ask me about a particular theory."
-  };
-
-  function addMessage(sender, text) {
-    const message = document.createElement('div');
-    message.classList.add('message', sender);
-    message.innerHTML = text; // Using innerHTML to allow for <strong> tags etc.
-    chatWindow.appendChild(message);
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-  }
-
-  function handleUserInput() {
-    const text = userInput.value.trim().toLowerCase();
-    if (text === '') return;
-
-    addMessage('user', text);
-    userInput.value = '';
-
-    setTimeout(() => {
-        const typingIndicator = document.createElement('div');
-        typingIndicator.classList.add('message', 'bot-typing');
-        typingIndicator.textContent = 'Analyzing...';
-        chatWindow.appendChild(typingIndicator);
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-
-        setTimeout(() => {
-            chatWindow.removeChild(typingIndicator);
-            let response = script.default;
-            for (const key in script) {
-                if (text.includes(key.replace(/[?]/g, ''))) {
-                    response = script[key];
-                    break;
-                }
-            }
-            addMessage('bot', response);
-        }, 1000 + Math.random() * 500);
-
-    }, 300);
-  }
-
-  sendBtn.addEventListener('click', handleUserInput);
-  userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') handleUserInput();
+  chatToggle.addEventListener('click', () => {
+      const isVisible = chatWidget.style.display === 'flex';
+      chatWidget.style.display = isVisible ? 'none' : 'flex';
   });
-
-  // Initial bot message
-  setTimeout(() => addMessage('bot', script.start), 1000);
-
-});
 </script>
 
 </body>
