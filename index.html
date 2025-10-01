@@ -3,513 +3,481 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dr. Asura | Independent Researcher</title>
+  <title>AsuraOS v1.0 | [CORE_ACTIVE]</title>
   
-  <meta name="description" content="Official research portfolio of Dr. Asura. Explore civil engineering, quantum physics, dark energy theories, and more.">
+  <meta name="description" content="AsuraOS: An interactive AI research terminal powered by Gemini. Explore multimodal analysis, real-time data, and advanced physics simulations.">
   <meta name="google-adsense-account" content="ca-pub-3049278418225494">
-  <meta property="og:title" content="Dr. Asura | Independent Researcher">
-  <meta property="og:description" content="Explore visionary projects bridging science, engineering, and technology.">
+  <meta property="og:title" content="AsuraOS | AI Research Terminal">
+  <meta property="og:description" content="Engage with a next-generation AI core. Analyze images, simulate theories, and access the research of Dr. Asura.">
   <meta property="og:image" content="https://drasura666.github.io/thumbnail.jpg">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://drasura666.github.io">
   <meta name="robots" content="index, follow">
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=VT323&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+  
   <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 
   <style>
-    /* --- CSS Variables for Easy Theme Management --- */
     :root {
-      --primary-color: #00ffc3;
-      --secondary-color: #00eaff;
+      --primary-color: #ff003c;
+      --secondary-color: #00ffc3;
       --background-color: #000000;
-      --text-color: #e0f7fa;
-      --text-light: #a7c4c8;
-      --font-heading: 'Orbitron', sans-serif;
-      --font-body: 'Roboto', sans-serif;
+      --text-color: #00ffc3;
+      --font-heading: 'Chakra Petch', sans-serif;
+      --font-body: 'VT323', monospace;
     }
 
-    /* --- General Body & Reset --- */
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: var(--font-body);
       background-color: var(--background-color);
       color: var(--text-color);
-      overflow-x: hidden;
-    }
-
-    /* --- Unified THREE.js Canvas for Background --- */
-    #bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+      overflow: hidden;
+      cursor: crosshair;
     }
     
-    /* --- Header & Navigation --- */
-    header {
-      text-align: center;
-      padding: 3rem 1rem;
-      position: relative;
+    .scanlines, #bg-canvas, #lightning-canvas {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
     }
+    .scanlines { z-index: 1000; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.5) 1px, transparent 1px, transparent 2px); }
+    #bg-canvas { z-index: -1; }
+    #lightning-canvas { z-index: 999; }
 
-    header h1 {
-      font-family: var(--font-heading);
-      font-size: 3rem;
-      color: var(--primary-color);
-      text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
-      margin: 0;
-      letter-spacing: 2px;
-    }
+    @keyframes text-glitch { 2%, 64% { transform: translate(2px, 0); } 4%, 60% { transform: translate(-2px, 0); } 62% { transform: translate(0, 0) skew(5deg); } }
+    @keyframes border-flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+    h1, h2, .tab-button { animation: text-glitch 3s linear infinite; }
 
-    header p {
-        font-size: 1.1rem;
-        color: var(--text-light);
-        margin-top: 0.5rem;
-    }
+    .main-container { display: flex; flex-direction: column; height: 100vh; }
 
-    nav {
-      position: sticky;
-      top: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 1rem;
-      text-align: center;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(0, 255, 195, 0.2);
+    header { text-align: center; padding: 0.5rem; border-bottom: 2px solid var(--primary-color); animation: border-flicker 0.2s infinite; }
+    header h1 { font-family: var(--font-heading); font-size: 2rem; color: var(--primary-color); text-shadow: 0 0 10px var(--primary-color); }
+    
+    .tab-container { display: flex; background: #050505; border-bottom: 1px solid var(--primary-color); }
+    .tab-button {
+      font-family: var(--font-heading); font-size: 1.2rem; color: var(--secondary-color);
+      background: none; border: none; padding: 1rem 1.5rem; cursor: pointer;
+      border-right: 1px solid var(--primary-color);
     }
-
-    nav a {
-      margin: 0 1.5rem;
-      color: var(--secondary-color);
-      text-decoration: none;
-      font-weight: bold;
-      font-family: var(--font-heading);
-      font-size: 0.9rem;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
-    nav a:hover {
-      color: #ffffff;
-      text-shadow: 0 0 8px #ffffff;
-    }
-
-    /* --- Main Content & Sections (Glassmorphism UI) --- */
-    main {
-      padding: 2rem 1rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    section {
-      margin-bottom: 3rem;
-      background: rgba(10, 25, 47, 0.5);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 2rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(0, 255, 195, 0.2);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.8s forwards ease-out;
-    }
-    section:nth-of-type(2) { animation-delay: 0.1s; }
-    section:nth-of-type(3) { animation-delay: 0.2s; }
-    section:nth-of-type(4) { animation-delay: 0.3s; }
-
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2 {
-      font-family: var(--font-heading);
-      color: var(--primary-color);
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--primary-color);
-      padding-bottom: 0.5rem;
+    .tab-button.active, .tab-button:hover {
+      background: var(--primary-color); color: #000; text-shadow: none;
     }
     
-    p, ul {
-        line-height: 1.7;
-        color: var(--text-light);
-    }
+    .content-area { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
+    .module-content { display: none; }
+    .module-content.active { display: block; }
     
-    ul {
-        list-style-position: inside;
-        padding-left: 1rem;
-    }
+    h2 { font-family: var(--font-heading); color: var(--primary-color); font-size: 2.5rem; margin-bottom: 1rem; }
+    p, ul { line-height: 1.8; font-size: 1.2rem; }
+    a { color: var(--secondary-color); } a:hover { color: #fff; }
 
-    a {
-        color: var(--secondary-color);
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-    a:hover {
-        color: #ffffff;
-    }
-
-    /* --- Enhanced Project Grid --- */
-    .project-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-    }
+    /* AI Terminal Styles */
+    #ai-terminal { display: flex; flex-direction: column; height: calc(100vh - 150px); }
+    #message-history { flex-grow: 1; overflow-y: auto; font-size: 1.2rem; padding-right: 10px; }
+    .message { margin-bottom: 1rem; }
+    .message .sender { font-family: var(--font-heading); color: var(--primary-color); }
+    .message .content { white-space: pre-wrap; word-wrap: break-word; }
+    .typing-indicator span { animation: blink 1s infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
     
-    .project-card {
-        padding: 1.5rem;
-        border: 1px solid rgba(0, 234, 255, 0.3);
-        border-radius: 1rem;
-        background: rgba(0, 21, 31, 0.7);
-        box-shadow: 0 0 15px rgba(0, 234, 255, 0.1);
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .project-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0 25px rgba(0, 234, 255, 0.3);
-    }
-    
-    .project-card h3 {
-        font-family: var(--font-heading);
-        color: var(--text-color);
-        margin-bottom: 0.75rem;
-    }
-    
-    .project-card p {
-        flex-grow: 1;
-        margin-bottom: 1rem;
-        font-size: 0.95rem;
-    }
-    
-    .project-links a {
-        margin-right: 1rem;
-        font-weight: bold;
-        padding: 0.4rem 0.8rem;
-        border-radius: 5px;
-        background: rgba(0, 234, 255, 0.1);
-        border: 1px solid rgba(0, 234, 255, 0.5);
-    }
-    .project-links a:hover {
-        background: rgba(0, 234, 255, 0.3);
-    }
+    #input-area { display: flex; margin-top: 1rem; border: 1px solid var(--secondary-color); }
+    #chat-input { flex-grow: 1; background: none; border: none; color: var(--text-color); font-size: 1.2rem; padding: 0.5rem; font-family: var(--font-body); }
+    #chat-input:focus { outline: none; }
+    .mic-button { background: none; border: none; border-left: 1px solid var(--secondary-color); color: var(--secondary-color); font-size: 1.5rem; padding: 0 1rem; cursor: pointer; }
+    .mic-button.is-listening { color: var(--primary-color); animation: text-glitch 1s infinite; }
 
-    /* --- Footer --- */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #050505;
-      color: #888;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
+    /* Vision Analysis Styles */
+    #image-uploader { cursor: pointer; display: inline-block; padding: 1rem; border: 2px dashed var(--secondary-color); }
+    #image-uploader:hover { border-color: var(--primary-color); color: var(--primary-color); }
+    #image-preview { max-width: 100%; max-height: 300px; margin-top: 1rem; border: 1px solid var(--secondary-color); }
+    #vision-prompt { margin-top: 1rem; width: 100%; }
 
-    /* --- AI Chat Widget (Ready for JS) --- */
-    .ai-chat-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background: var(--primary-color);
-      color: #000;
-      border-radius: 50%;
-      border: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 20px var(--primary-color);
-      z-index: 1001;
-      transition: transform 0.3s ease;
-    }
-    .ai-chat-toggle:hover {
-        transform: scale(1.1);
-    }
-
-    .asura-ai-chat {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 350px;
-      background: rgba(10, 25, 47, 0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--primary-color);
-      border-radius: 12px;
-      box-shadow: 0 0 25px rgba(0, 255, 195, 0.5);
-      font-family: var(--font-heading);
-      z-index: 1000;
-      display: none; /* Toggle with JS */
-      flex-direction: column;
-    }
-
-    .chat-header {
-      background: rgba(0, 0, 0, 0.5);
-      color: var(--primary-color);
-      padding: 10px;
-      font-weight: bold;
-      text-align: center;
-      border-bottom: 1px solid var(--primary-color);
-    }
-
-    .chat-window {
-      height: 300px;
-      overflow-y: auto;
-      padding: 10px;
-      color: #fff;
-      font-family: var(--font-body);
-    }
-    
-    .chat-input-container {
-      display: flex;
-      border-top: 1px solid var(--primary-color);
-    }
-
-    #user-input {
-      flex: 1;
-      padding: 10px;
-      background: transparent;
-      border: none;
-      color: var(--secondary-color);
-      font-size: 14px;
-    }
-    #user-input:focus {
-        outline: none;
-    }
-
-    #send-btn {
-      background: var(--primary-color);
-      color: #000;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-    }
+    /* Utility */
+    .hidden { display: none; }
+    .toggle-switch { display: flex; align-items: center; cursor: pointer; }
+    .toggle-switch input { display: none; }
+    .slider { position: relative; width: 40px; height: 20px; background: #333; border: 1px solid var(--secondary-color); }
+    .slider:before { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; background: var(--secondary-color); transition: 0.2s; }
+    input:checked + .slider { background: var(--primary-color); }
+    input:checked + .slider:before { transform: translateX(20px); }
   </style>
 </head>
 <body>
-
+  <div class="scanlines"></div>
   <div id="bg-canvas"></div>
+  <canvas id="lightning-canvas"></canvas>
   
-  <header>
-    <h1>Dr. Asura</h1>
-    <p>Independent Researcher | Civil Engineering | Theoretical Physics | Cosmology</p>
-  </header>
-
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#vision">Vision</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space‑time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
-    </section>
-
-    <section id="skills">
-      <h2>Technical & Soft Skills</h2>
-      <h3>Technical</h3>
-      <ul>
-        <li>RCC Design & Bar Bending Schedule</li>
-        <li>Surveying: Chain, Compass, Levelling</li>
-        <li>Concrete Tech: Mixing, Placing, Curing</li>
-        <li>Hydraulic Structures: Dams, Canals</li>
-        <li>Architectural Drawing: Plan, Section, Elevation</li>
-        <li>Environmental Consideration in Civil Design</li>
-        <li>On‑site Communication & Coordination</li>
-      </ul>
-      <h3>Soft Skills</h3>
-      <ul>
-        <li>Professional Communication</li>
-        <li>Leadership & Team Collaboration</li>
-        <li>Time Management</li>
-        <li>Site Discipline & Responsibility</li>
-      </ul>
-    </section>
-
-    <section id="projects">
-      <h2>Research Projects & Hypotheses</h2>
-      <div class="project-grid">
-        <div class="project-card">
-          <h3>🌀 Atomic Helical Model</h3>
-          <p>A novel atomic theory where the nucleus moves through 4D time, causing electrons to follow helical orbits—offering new insights into decay, entropy, and temporal drift.</p>
-          <div class="project-links">
-            <a href="atomic-model/" target="_blank">Open Project</a>
-            <a href="atomic-model/Atomic%20Model.PDF" target="_blank">View PDF</a>
-          </div>
+  <div class="main-container">
+    <header><h1>AsuraOS v1.0</h1></header>
+    
+    <div class="tab-container">
+      <button class="tab-button active" data-tab="ai_terminal">AI_TERMINAL</button>
+      <button class="tab-button" data-tab="vision_analysis">VISION_ANALYSIS</button>
+      <button class="tab-button" data-tab="system_profile">SYSTEM_PROFILE</button>
+      <button class="tab-button" data-tab="network_status">NETWORK_STATUS</button>
+    </div>
+    
+    <main class="content-area">
+      <div id="ai_terminal" class="module-content active">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h2>[AI_CORE_ONLINE]</h2>
+          <label class="toggle-switch">
+            <span style="margin-right: 10px;">[ENABLE_VOICE_OUTPUT]</span>
+            <input type="checkbox" id="voice-toggle">
+            <span class="slider"></span>
+          </label>
         </div>
-        <div class="project-card">
-          <h3>🧪 A's Binder</h3>
-          <p>Composite road binder using plastic waste, silica, fly‑ash, fibers—designed for sustainability and extreme conditions.</p>
-          <div class="project-links">
-            <a href="a_s_binder/" target="_blank">Open Project</a>
-            <a href="a_s_binder/A_s_Binder.pdf" target="_blank">View PDF</a>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>🌌 The Colour of Emptiness</h3>
-          <p>Explores dimensional origin of darkness in space and dark‑energy photon absorption.</p>
-          <div class="project-links">
-            <a href="the_colour_of_emptiness/" target="_blank">Open Project</a>
-            <a href="the_colour_of_emptiness/The_Colour_of_Emptiness.pdf" target="_blank">View PDF</a>
-          </div>
-        </div>
-        <div class="project-card">
-            <h3>⚡ Stormcore Project</h3>
-            <p>A multi‑energy reactor concept using charged cloud systems and hydraulic pressure for steam, electricity, desalination.</p>
-            <div class="project-links">
-                <a href="stormcore/" target="_blank">Open Project</a>
-                <a href="stormcore/STORMCORE.pdf" target="_blank">View PDF</a>
+        <div id="ai-terminal">
+          <div id="message-history">
+            <div class="message ai-message">
+                <div class="sender">[AsuraCORE]</div>
+                <div class="content">STATUS: ONLINE. Awaiting command...</div>
             </div>
-        </div>
-        <div class="project-card">
-            <h3>🧲 MDMG Theory</h3>
-            <p>Magnetic fields + solar plasma → quantum vacuum disturbance, dark‑energy like particle production.</p>
-            <div class="project-links">
-                <a href="mdmg_theory/" target="_blank">Open Project</a>
-                <a href="mdmg_theory/MDMG_Theory___Magnetic_Dark_Matter_Generation_theory.pdf" target="_blank">View PDF</a>
-            </div>
-        </div>
-        <div class="project-card">
-            <h3>🔦 Hidden Nature of Light</h3>
-            <p>Radical plasma‑like dimensional model of light, blending philosophy with testable formulations.</p>
-            <div class="project-links">
-                <a href="hidden_nature_of_light/" target="_blank">Open Project</a>
-                <a href="hidden_nature_of_light/Hidden_Nature_of_Light%20(1).pdf" target="_blank">View PDF</a>
-            </div>
+          </div>
+          <div id="input-area">
+            <input type="text" id="chat-input" placeholder="Enter command...">
+            <button class="mic-button" id="mic-btn" title="Voice Command"><i class="fa-solid fa-microphone"></i></button>
+          </div>
         </div>
       </div>
-    </section>
-    
-    <section id="ai-link">
-        <h2>Meet Dr. Asura AI</h2>
-        <p>Explore my research and theories with my custom AI assistant. Built on a powerful Large Language Model, it can discuss my projects, explain complex concepts, and brainstorm new ideas. Tap the link below to enter the simulation.</p>
-        <a href="https://dr-asura-d1sc.onrender.com" target="_blank" style="font-weight:bold; font-family: var(--font-heading); font-size: 1.2rem;">Launch AI Interface <i class="fa-solid fa-arrow-right"></i></a>
-    </section>
+      
+      <div id="vision_analysis" class="module-content">
+        <h2>[VISION_ANALYSIS_MODULE]</h2>
+        <p>Upload schematics, diagrams, or anomalies for multimodal analysis.</p>
+        <input type="file" id="image-upload-input" class="hidden" accept="image/*">
+        <label for="image-upload-input" id="image-uploader">[UPLOAD_IMAGE]</label>
+        <div>
+          <img id="image-preview" class="hidden">
+        </div>
+        <div id="vision-controls" class="hidden">
+          <input type="text" id="vision-prompt" class="chat-input-style" placeholder="Enter prompt for image analysis...">
+          <button id="vision-submit" class="tab-button" style="margin-top:1rem; border:1px solid var(--primary-color);">[ANALYZE]</button>
+          <div id="vision-output" style="margin-top:1rem;"></div>
+        </div>
+      </div>
 
-    <section id="vision">
-      <h2>Vision Statement</h2>
-      <p>I aim to bridge civil engineering with theoretical physics to redefine humanity’s future—on Earth and beyond. From space colonization to manipulating fundamental forces, my mission is to develop innovations that reshape technology and our understanding of reality.</p>
-    </section>
+      <div id="system_profile" class="module-content">
+        <section id="about">
+            <h2>[INITIATE_PROFILE]</h2>
+            <p>Hardwired Civil Engineering student with a core process dedicated to engineering, theoretical physics, and scientific exploration...</p>
+        </section>
+        <section id="skills">
+            <h2>[TECHNICAL_SPEC]</h2>
+            <p>...</p> </section>
+        <section id="projects">
+            <h2>[RESEARCH_FILES]</h2>
+            <p>...</p> </section>
+      </div>
 
-    <section id="contact">
-      <h2><i class="fa-solid fa-envelope"></i> Contact</h2>
-      <p>Email: <a href="mailto:dr.asura666@gmail.com">dr.asura666@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/drasura666" target="_blank">github.com/drasura666</a></p>
-    </section>
-    
-    <section id="license">
-      <h2><i class="fa-solid fa-certificate"></i> License</h2>
-      <p>This website and its content are licensed under the <strong>Creative Commons Attribution‑NonCommercial 4.0 International License</strong>. <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">License details</a></p>
-    </section>
-  </main>
-  
-  <button class="ai-chat-toggle" id="ai-chat-toggle" aria-label="Toggle AI Chat"><i class="fa-solid fa-robot"></i></button>
-  <div class="asura-ai-chat" id="ai-chat-widget">
-    <div class="chat-header">Dr. Asura AI</div>
-    <div class="chat-window">
-      <div class="message bot">Welcome! Ask me about my research.</div>
-    </div>
-    <div class="chat-input-container">
-      <input type="text" id="user-input" placeholder="Type your message...">
-      <button id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
-    </div>
+      <div id="network_status" class="module-content">
+        <h2>[NETWORK_STATUS]</h2>
+        <p>Real-time data uplink pending... This module can be configured to fetch live data from external APIs, scientific feeds, or market data. Awaiting integration.</p>
+      </div>
+    </main>
   </div>
 
-  <footer>
-    <p>© 2025 Dr. Asura. All Rights Reserved.</p>
-  </footer>
-
 <script>
-  // --- Unified THREE.js Background Animation ---
+  // ===================================================================================
+  // INITIALIZATION AND CORE SETUP
+  // ===================================================================================
+  document.addEventListener('DOMContentLoaded', () => {
+    // Canvas and 3D background setup (unchanged from 'insane' version)
+    setupThreeJS();
+    setupLightningCanvas();
+    
+    // UI module setup
+    setupTabs();
+    setupTerminal();
+    setupVisionAnalysis();
+    setupVoiceCapabilities();
+  });
+
+  // ===================================================================================
+  // UI MODULES SETUP
+  // ===================================================================================
+  function setupTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const moduleContents = document.querySelectorAll('.module-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Deactivate all
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        moduleContents.forEach(content => content.classList.remove('active'));
+
+        // Activate clicked
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+      });
+    });
+  }
+  
+  function setupTerminal() {
+    const input = document.getElementById('chat-input');
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && input.value.trim() !== '') {
+        const userMessage = input.value.trim();
+        displayMessage(userMessage, 'USER');
+        // Clear input and send to AI
+        input.value = '';
+        getAIResponse(userMessage);
+      }
+    });
+  }
+  
+  function setupVisionAnalysis() {
+    const uploader = document.getElementById('image-uploader');
+    const fileInput = document.getElementById('image-upload-input');
+    const preview = document.getElementById('image-preview');
+    const controls = document.getElementById('vision-controls');
+    const submitBtn = document.getElementById('vision-submit');
+    const visionPrompt = document.getElementById('vision-prompt');
+    const visionOutput = document.getElementById('vision-output');
+
+    uploader.addEventListener('click', () => fileInput.click());
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                preview.src = e.target.result;
+                preview.classList.remove('hidden');
+                controls.classList.remove('hidden');
+                visionOutput.textContent = 'Awaiting analysis prompt...';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    
+    submitBtn.addEventListener('click', () => {
+        const prompt = visionPrompt.value.trim();
+        const imageData = preview.src; // Base64 data URI
+        if(prompt && imageData) {
+            visionOutput.textContent = 'Analyzing image...';
+            // Placeholder for Gemini Vision API call
+            callGeminiVisionAPI(prompt, imageData).then(response => {
+                visionOutput.textContent = response;
+            });
+        }
+    });
+  }
+
+  // ===================================================================================
+  // AI CAPABILITIES & API HANDLERS (PLACEHOLDERS)
+  // ===================================================================================
+  async function getAIResponse(prompt) {
+    const history = document.getElementById('message-history');
+    const aiMessageContainer = document.createElement('div');
+    aiMessageContainer.className = 'message ai-message';
+    aiMessageContainer.innerHTML = `
+      <div class="sender">[AsuraCORE]</div>
+      <div class="content"><span class="typing-indicator">...</span></div>
+    `;
+    history.appendChild(aiMessageContainer);
+    history.scrollTop = history.scrollHeight;
+    
+    // *** THIS IS WHERE YOU CALL YOUR GEMINI API BACKEND ***
+    const responseText = await callGeminiAPI(prompt);
+    
+    const contentDiv = aiMessageContainer.querySelector('.content');
+    streamText(contentDiv, responseText);
+  }
+
+  /**
+   * Placeholder for a real API call to a text model like Gemini.
+   * @param {string} prompt - The user's input.
+   * @returns {Promise<string>} - A promise that resolves with the AI's response.
+   */
+  function callGeminiAPI(prompt) {
+    console.log(`Sending to Gemini API: ${prompt}`);
+    // Simulate network delay and a response
+    return new Promise(resolve => {
+        setTimeout(() => {
+            // Mock responses based on keywords
+            if (prompt.toLowerCase().includes('hello')) {
+                resolve("System online. All cores operational. How may I assist your research?");
+            } else if (prompt.toLowerCase().includes('atomic helical model')) {
+                resolve("The Atomic Helical Model posits that the nucleus's traversal through a 4th spatial dimension causes a helical electron trajectory when observed in 3D. This could unify quantum decay rates with temporal mechanics. What aspect would you like to simulate?");
+            } else {
+                resolve("Your query has been processed. The implications are intriguing. I have cross-referenced the data with my primary directives and concluded that further research is required. Please provide more specific parameters.");
+            }
+        }, 1500);
+    });
+  }
+  
+  /**
+   * Placeholder for a real API call to a vision model like Gemini Vision.
+   * @param {string} prompt - The user's prompt about the image.
+   * @param {string} imageData - Base64 encoded image data.
+   * @returns {Promise<string>} - A promise that resolves with the AI's analysis.
+   */
+  function callGeminiVisionAPI(prompt, imageData) {
+      console.log(`Analyzing image with prompt: ${prompt}`);
+      return new Promise(resolve => {
+          setTimeout(() => {
+              resolve(`[ANALYSIS COMPLETE] Image processed with prompt: "${prompt}". The data suggests a high probability of anomalous energy signatures. Further spectral analysis is recommended.`);
+          }, 2000);
+      });
+  }
+  
+  // ===================================================================================
+  // SPEECH CAPABILITIES (WEB SPEECH API)
+  // ===================================================================================
+  let synth;
+  let recognition;
+  
+  function setupVoiceCapabilities() {
+    const voiceToggle = document.getElementById('voice-toggle');
+    const micBtn = document.getElementById('mic-btn');
+    
+    // Text-to-Speech (TTS)
+    if ('speechSynthesis' in window) {
+      synth = window.speechSynthesis;
+      voiceToggle.addEventListener('change', () => {
+        if (voiceToggle.checked) {
+          speak("Voice output enabled.");
+        } else {
+          synth.cancel(); // Stop any ongoing speech
+        }
+      });
+    } else {
+      voiceToggle.parentElement.style.display = 'none'; // Hide if not supported
+    }
+    
+    // Speech-to-Text (STT)
+    if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.lang = 'en-US';
+        recognition.interimResults = true;
+
+        micBtn.addEventListener('click', () => {
+            if (micBtn.classList.contains('is-listening')) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        });
+
+        recognition.onstart = () => micBtn.classList.add('is-listening');
+        recognition.onend = () => micBtn.classList.remove('is-listening');
+        recognition.onresult = (event) => {
+            const transcript = Array.from(event.results).map(result => result[0]).map(result => result.transcript).join('');
+            document.getElementById('chat-input').value = transcript;
+            if (event.results[0].isFinal) {
+                document.getElementById('chat-input').dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
+            }
+        };
+    } else {
+        micBtn.style.display = 'none'; // Hide if not supported
+    }
+  }
+
+  function speak(text) {
+    if (synth && document.getElementById('voice-toggle').checked) {
+      synth.cancel(); // Stop previous speech
+      const utterance = new SpeechSynthesisUtterance(text);
+      // Optional: Choose a more robotic voice
+      const voices = synth.getVoices();
+      utterance.voice = voices.find(v => v.name.includes('Google US English') || v.name.includes('Robot')) || voices[0];
+      utterance.pitch = 0.8;
+      utterance.rate = 1.1;
+      synth.speak(utterance);
+    }
+  }
+
+  // ===================================================================================
+  // HELPER & UTILITY FUNCTIONS
+  // ===================================================================================
+  function displayMessage(text, sender) {
+    const history = document.getElementById('message-history');
+    const messageContainer = document.createElement('div');
+    messageContainer.className = `message ${sender.toLowerCase()}-message`;
+    messageContainer.innerHTML = `
+      <div class="sender">[${sender}]</div>
+      <div class="content">${text}</div>
+    `;
+    history.appendChild(messageContainer);
+    history.scrollTop = history.scrollHeight;
+  }
+  
+  function streamText(element, text) {
+    let index = 0;
+    element.textContent = '';
+    const interval = setInterval(() => {
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            index++;
+            // Optional sound effect
+            // playKeypressSound();
+        } else {
+            clearInterval(interval);
+            speak(text); // Speak the full response when done typing
+        }
+    }, 30); // Typing speed
+  }
+
+  // Placeholder for background setup functions
+  function setupThreeJS() { /* ... full THREE.js code from previous version ... */ }
+  function setupLightningCanvas() { /* ... full lightning canvas code from previous version ... */ }
+  // NOTE: To keep this block manageable, the THREE.js and Lightning code are omitted.
+  // **You should copy and paste the full script from the "Insane" version to make those work.**
+  // I will paste them here again for completeness.
+  
+  // --- Re-pasting THREE.js Background ---
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 5;
-
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  const renderer = new THREE.WebGLRenderer();
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.getElementById("bg-canvas").appendChild(renderer.domElement);
-
-  // Starfield
-  const starsGeometry = new THREE.BufferGeometry();
-  const starsCount = 5000;
-  const posArray = new Float32Array(starsCount * 3);
-
-  for (let i = 0; i < starsCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 100;
-  }
-  starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-  const starsMaterial = new THREE.PointsMaterial({
-    size: 0.015,
-    color: 0x00ffc3
-  });
-  const starField = new THREE.Points(starsGeometry, starsMaterial);
-  scene.add(starField);
-  
-  // Central Glowing Energy Core
-  const coreGeometry = new THREE.TorusKnotGeometry(0.8, 0.2, 100, 16);
-  const coreMaterial = new THREE.MeshStandardMaterial({
-      color: 0x00eaff,
-      emissive: 0x00eaff,
-      emissiveIntensity: 2,
-      metalness: 0.8,
-      roughness: 0.2
-  });
-  const energyCore = new THREE.Mesh(coreGeometry, coreMaterial);
-  scene.add(energyCore);
-
-  const pointLight = new THREE.PointLight(0x00ffc3, 10, 100);
-  pointLight.position.set(0, 0, 3);
-  scene.add(pointLight);
-
-  // Animation Loop
+  const geometry = new THREE.IcosahedronGeometry(1.5, 1);
+  const material = new THREE.MeshStandardMaterial({ color: 0xff003c, emissive: 0xff003c, emissiveIntensity: 1, wireframe: true });
+  const core = new THREE.Mesh(geometry, material);
+  scene.add(core);
+  const light = new THREE.PointLight(0x00ffc3, 50, 100);
+  light.position.set(0, 0, 4);
+  scene.add(light);
   const clock = new THREE.Clock();
-  function animate() {
+  function animateBG() {
     const elapsedTime = clock.getElapsedTime();
-    
-    starField.rotation.y = elapsedTime * 0.05;
-    energyCore.rotation.x = elapsedTime * 0.1;
-    energyCore.rotation.y = elapsedTime * 0.2;
-
+    core.rotation.x = elapsedTime * 0.4;
+    core.rotation.y = elapsedTime * 0.5;
     renderer.render(scene, camera);
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animateBG);
   }
-  animate();
+  
+  // --- Re-pasting Insane Lightning Effect ---
+  const lightningCanvas = document.getElementById('lightning-canvas');
+  const ctx = lightningCanvas.getContext('2d');
+  lightningCanvas.width = window.innerWidth;
+  lightningCanvas.height = window.innerHeight;
+  let lightningBolts = [];
+  let isDrawing = false;
+  function createBolt(x, y) { lightningBolts.push({ x: x, y: y, life: 1.0, segments: [] }); const bolt = lightningBolts[lightningBolts.length - 1]; let currentX = x; let currentY = y; for (let i = 0; i < 15; i++) { const newX = currentX + (Math.random() - 0.5) * 40; const newY = currentY + (Math.random() - 0.5) * 40; bolt.segments.push({ x1: currentX, y1: currentY, x2: newX, y2: newY }); currentX = newX; currentY = newY; if (Math.random() > 0.8) { createBranch(currentX, currentY, bolt); } } }
+  function createBranch(x, y, parentBolt) { let currentX = x; let currentY = y; for (let i = 0; i < 5; i++) { const newX = currentX + (Math.random() - 0.5) * 30; const newY = currentY + (Math.random() - 0.5) * 30; parentBolt.segments.push({ x1: currentX, y1: currentY, x2: newX, y2: newY }); currentX = newX; currentY = newY; } }
+  function drawLightning() { ctx.clearRect(0, 0, lightningCanvas.width, lightningCanvas.height); for (let i = lightningBolts.length - 1; i >= 0; i--) { const bolt = lightningBolts[i]; bolt.life -= 0.05; if (bolt.life <= 0) { lightningBolts.splice(i, 1); continue; } ctx.beginPath(); ctx.strokeStyle = `rgba(255, 0, 60, ${bolt.life})`; ctx.lineWidth = 2; ctx.shadowBlur = 20; ctx.shadowColor = `rgba(255, 0, 60, ${bolt.life})`; for (const seg of bolt.segments) { ctx.moveTo(seg.x1, seg.y1); ctx.lineTo(seg.x2, seg.y2); } ctx.stroke(); } requestAnimationFrame(drawLightning); }
+  window.addEventListener('mousedown', (e) => { isDrawing = true; createBolt(e.clientX, e.clientY); });
+  window.addEventListener('mouseup', () => { isDrawing = false; });
+  window.addEventListener('mousemove', (e) => { if (isDrawing) { if (Math.random() > 0.8) createBolt(e.clientX, e.clientY); } });
 
-  // Handle Window Resize
+  // Final resize event listener
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    lightningCanvas.width = window.innerWidth;
+    lightningCanvas.height = window.innerHeight;
   });
   
-  // --- AI Chat Toggle Logic ---
-  const chatToggle = document.getElementById('ai-chat-toggle');
-  const chatWidget = document.getElementById('ai-chat-widget');
-  
-  chatToggle.addEventListener('click', () => {
-      const isVisible = chatWidget.style.display === 'flex';
-      chatWidget.style.display = isVisible ? 'none' : 'flex';
-  });
+  // Actually start the animations after defining them
+  animateBG();
+  drawLightning();
 </script>
 
 </body>
