@@ -223,7 +223,6 @@
 
   <nav>
     <a href="#about">About</a>
-    <a href="#profile-summary">Profile Summary</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#vision">Vision</a>
@@ -232,15 +231,15 @@
   </nav>
 
   <main>
-    <!-- About -->
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space‑time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.</p>
-    </section>
+    <!-- About + Profile Summary as Single Section -->
+<section id="about" class="card">
+  <h2>About Me</h2>
+  <p>
+    Dedicated, visionary, and hardworking Civil Engineering student with a deep passion for engineering, theoretical physics, and scientific exploration. My independent research spans topics from energy harvesting and dark energy to space‑time manipulation and advanced material science. I strive to bring forward transformative ideas that challenge current understanding and offer solutions for future generations.
+  </p>
 
-    <!-- Dr. Asura Profile Section -->
-<section id="profile">
-  <h2 style="color:#00ffc3;">Profile Summary</h2>
+  <!-- Profile Summary -->
+  <h2 class="no-glow" style="margin-top:30px; color:#00ffc3;">Profile Summary</h2>
   <p style="color:#e0f7fa; line-height:1.6;">
     <strong>Identity:</strong> Dr. Asura — Independent Researcher & Innovator<br>
     <strong>Fields:</strong> Civil Engineering • Theoretical Physics • Cosmology • Artificial Intelligence<br>
@@ -249,7 +248,8 @@
     <strong>YouTube Channel:</strong> <em>“Dr. Asura”</em> – Active tech & AI content, thousands of views
   </p>
 
-  <h3 style="color:#00ffc3;">Research & Projects</h3>
+  <!-- Research & Projects -->
+  <h3 style="color:#00ffc3; margin-top:20px;">Research & Projects</h3>
   <ul style="color:#e0f7fa; line-height:1.6;">
     <li>🌀 <strong>Atomic Helical Model:</strong> 4D nucleus motion & helical electron orbits for novel decay and entropy insights</li>
     <li>🧪 <strong>A's Binder:</strong> Composite road binder using plastic, fly-ash, fibers for sustainable construction</li>
@@ -259,14 +259,16 @@
     <li>🔦 <strong>Hidden Nature of Light:</strong> Plasma-like dimensional light model combining philosophy & testable physics</li>
   </ul>
 
-  <h3 style="color:#00ffc3;">Certifications & Training</h3>
+  <!-- Certifications & Training -->
+  <h3 style="color:#00ffc3; margin-top:20px;">Certifications & Training</h3>
   <ul style="color:#e0f7fa; line-height:1.6;">
     <li><strong>Wadhwani Foundation (2025):</strong> Effective Speaking & Listening, Impactful Writing, Self-Presentation</li>
     <li><strong>Summer Training (2025):</strong> Practical civil engineering training at PWD</li>
     <li><strong>Volunteering:</strong> Recognized for humanitarian efforts</li>
   </ul>
 
-  <h3 style="color:#00ffc3;">Competitions & Achievements</h3>
+  <!-- Competitions & Achievements -->
+  <h3 style="color:#00ffc3; margin-top:20px;">Competitions & Achievements</h3>
   <ul style="color:#e0f7fa; line-height:1.6;">
     <li>🌐 ICS 2025: Qualified Pre-Final Round</li>
     <li>📘 JEECUP 2023: Achieved top percentile</li>
@@ -278,14 +280,13 @@
   </ul>
 </section>
 
-<!-- Add this CSS if not already included -->
+<!-- Optional CSS for neon effect on hover -->
 <style>
 @keyframes fadeInUp {
   to { opacity:1; transform: translateY(0); }
 }
 
-/* Optional: Neon hover glow on list items */
-#profile ul li:hover {
+#about ul li:hover {
   text-shadow: 0 0 8px #00fff2, 0 0 15px #00fff2;
   transition: text-shadow 0.3s ease;
 }
